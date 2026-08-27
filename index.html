@@ -22,24 +22,28 @@ body {
 }
 
 /* =========================
-   ШАПКА
+   ОБЩАЯ ШАПКА
 ========================= */
 
-header {
-    padding: 22px 16px 18px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.site-header {
+    padding: 20px 16px 17px;
 
     border-bottom: 1px solid rgba(255,255,255,0.07);
 
-    background: rgba(8,9,13,0.96);
+    background: rgba(8,9,13,0.97);
 }
 
+/* =========================
+   ЛОГОТИП
+========================= */
+
 .logo {
+    text-align: center;
+
     font-size: 25px;
+
     font-weight: 700;
+
     letter-spacing: 1px;
 
     background: linear-gradient(
@@ -60,7 +64,7 @@ header {
 
     animation: shine 4s linear infinite;
 
-    margin-bottom: 15px;
+    margin-bottom: 19px;
 }
 
 @keyframes shine {
@@ -76,13 +80,16 @@ header {
 }
 
 /* =========================
-   КНОПКА ПОИСКА
+   ПОИСК
 ========================= */
 
 .search-button {
 
-    width: 190px;
-    height: 38px;
+    display: block;
+
+    width: 220px;
+
+    height: 39px;
 
     border-radius: 20px;
 
@@ -97,20 +104,24 @@ header {
     cursor: pointer;
 
     transition: all 0.25s ease;
+
+    margin-left: 0;
 }
 
 .search-button:hover {
 
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.10);
 
-    border-color: rgba(255,255,255,0.3);
+    border-color: rgba(255,255,255,0.28);
 
     color: #fff;
 
 }
 
 .search-button:active {
+
     transform: scale(0.97);
+
 }
 
 /* =========================
@@ -118,15 +129,21 @@ header {
 ========================= */
 
 main {
-    padding: 22px 15px 90px;
+
+    padding: 21px 15px 90px;
+
 }
 
 .page {
+
     display: none;
+
 }
 
 .page.active {
+
     display: block;
+
 }
 
 /* =========================
@@ -144,7 +161,7 @@ main {
 }
 
 /* =========================
-   КАРТОЧКИ
+   СЕТКА
 ========================= */
 
 .anime-grid {
@@ -153,19 +170,25 @@ main {
 
     grid-template-columns: repeat(2, 1fr);
 
-    gap: 11px;
+    gap: 12px;
 
-    max-width: 420px;
+    max-width: 360px;
 
     margin: 0 auto;
 
 }
 
+/* =========================
+   КАРТОЧКА
+========================= */
+
 .anime-card {
 
     position: relative;
 
-    aspect-ratio: 2 / 3;
+    width: 100%;
+
+    aspect-ratio: 0.62 / 1;
 
     border-radius: 9px;
 
@@ -204,14 +227,15 @@ main {
 
 .empty-page {
 
-    min-height: calc(100vh - 190px);
+    min-height: calc(100vh - 155px);
 
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
-    color: #555;
+    color: #4f4f4f;
 
     font-size: 14px;
 
@@ -226,7 +250,9 @@ main {
     position: fixed;
 
     left: 0;
+
     right: 0;
+
     bottom: 0;
 
     height: 65px;
@@ -234,6 +260,7 @@ main {
     display: flex;
 
     justify-content: center;
+
     align-items: center;
 
     background: rgba(10,11,16,0.97);
@@ -295,39 +322,80 @@ main {
 }
 
 /* =========================
-   ТЕЛЕФОН
+   МАЛЕНЬКИЕ ЭКРАНЫ
 ========================= */
 
 @media (max-width: 360px) {
 
-    header {
-        padding-top: 19px;
-        padding-bottom: 16px;
+    .site-header {
+
+        padding: 18px 12px 16px;
+
     }
 
     .logo {
+
         font-size: 23px;
-        margin-bottom: 13px;
+
+        margin-bottom: 18px;
+
     }
 
     .search-button {
-        width: 175px;
-        height: 36px;
+
+        width: 205px;
+
+        height: 37px;
+
         font-size: 13px;
+
     }
 
     main {
+
         padding-left: 11px;
+
         padding-right: 11px;
+
     }
 
     .anime-grid {
+
+        max-width: 330px;
+
         gap: 9px;
-        max-width: 380px;
+
     }
 
     .section-title {
+
         font-size: 17px;
+
+    }
+
+}
+
+
+/* =========================
+   БОЛЬШИЕ ЭКРАНЫ
+========================= */
+
+@media (min-width: 700px) {
+
+    .site-header {
+
+        max-width: 900px;
+
+        margin: auto;
+
+    }
+
+    main {
+
+        max-width: 900px;
+
+        margin: auto;
+
     }
 
 }
@@ -338,31 +406,37 @@ main {
 <body>
 
 
-<!-- =========================
-     ШАПКА
-========================= -->
+<!-- ==================================================
+     ШАПКА ГЛАВНОЙ
+     Она находится только внутри страницы HOME
+================================================== -->
 
-<header>
+<section id="home-header" class="site-header">
 
     <div class="logo">
         Мираж Anime
     </div>
 
-    <button class="search-button" onclick="searchAnime()">
+    <button
+        class="search-button"
+        onclick="searchAnime()"
+    >
         🔍 Искать аниме
     </button>
 
-</header>
+</section>
 
 
-<!-- =========================
+<!-- ==================================================
      СТРАНИЦЫ
-========================= -->
+================================================== -->
 
 <main>
 
 
-    <!-- ГЛАВНАЯ -->
+    <!-- =========================
+         ГЛАВНАЯ
+    ========================= -->
 
     <section id="home" class="page active">
 
@@ -381,7 +455,9 @@ main {
     </section>
 
 
-    <!-- ИЗБРАННОЕ -->
+    <!-- =========================
+         ИЗБРАННОЕ
+    ========================= -->
 
     <section id="favorites" class="page">
 
@@ -392,7 +468,9 @@ main {
     </section>
 
 
-    <!-- ПРОФИЛЬ -->
+    <!-- =========================
+         ПРОФИЛЬ
+    ========================= -->
 
     <section id="profile" class="page">
 
@@ -406,20 +484,24 @@ main {
 </main>
 
 
-<!-- =========================
+<!-- ==================================================
      НИЖНЯЯ НАВИГАЦИЯ
-========================= -->
+================================================== -->
 
 <nav class="bottom-nav">
 
     <div class="nav-container">
 
+
         <button
             class="nav-button active"
             onclick="openPage('home', this)"
         >
+
             <span class="nav-icon">⌂</span>
+
             <span>Главная</span>
+
         </button>
 
 
@@ -427,8 +509,11 @@ main {
             class="nav-button"
             onclick="openPage('favorites', this)"
         >
+
             <span class="nav-icon">♡</span>
+
             <span>Избранное</span>
+
         </button>
 
 
@@ -436,9 +521,13 @@ main {
             class="nav-button"
             onclick="openPage('profile', this)"
         >
+
             <span class="nav-icon">♙</span>
+
             <span>Профиль</span>
+
         </button>
+
 
     </div>
 
@@ -447,23 +536,58 @@ main {
 
 <script>
 
-/* =========================
+/* ==================================================
    ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ
-========================= */
+================================================== */
 
 function openPage(pageId, button) {
 
+    /* Скрываем все страницы */
+
     document.querySelectorAll('.page').forEach(page => {
+
         page.classList.remove('active');
+
     });
 
-    document.getElementById(pageId).classList.add('active');
+
+    /* Показываем выбранную страницу */
+
+    document
+        .getElementById(pageId)
+        .classList.add('active');
+
+
+    /* Меняем активную кнопку */
 
     document.querySelectorAll('.nav-button').forEach(btn => {
+
         btn.classList.remove('active');
+
     });
 
     button.classList.add('active');
+
+
+    /*
+       Логотип и поиск показываем
+       ТОЛЬКО на Главной
+    */
+
+    const header = document.getElementById('home-header');
+
+    if (pageId === 'home') {
+
+        header.style.display = 'block';
+
+    } else {
+
+        header.style.display = 'none';
+
+    }
+
+
+    /* Возвращаем страницу наверх */
 
     window.scrollTo({
         top: 0,
@@ -473,9 +597,9 @@ function openPage(pageId, button) {
 }
 
 
-/* =========================
+/* ==================================================
    ПОИСК
-========================= */
+================================================== */
 
 function searchAnime() {
 
@@ -485,5 +609,6 @@ function searchAnime() {
 
 </script>
 
+
 </body>
-</html>
+    </html>
