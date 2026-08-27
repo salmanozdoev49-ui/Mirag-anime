@@ -2374,235 +2374,92 @@ main {
    ДАННЫЕ АНИМЕ
 ===================================================== */
 
-const animeList = [
+/* =====================================================
+   ANIME ИЗ SUPABASE
+===================================================== */
 
-    {
-        id: 1,
-        title: "Атака титанов",
-        year: 2013,
-        type: "TV",
-        episodes: 25,
-        rating: 9.7,
-        genres: [
-            "Экшен",
-            "Драма",
-            "Фэнтези"
-        ],
-        poster:
-        "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600",
-        description:
-        "Человечество живёт за огромными стенами, пытаясь защититься от таинственных титанов."
-    },
+let animeList = [];
 
 
-    {
-        id: 2,
-        title: "Тетрадь смерти",
-        year: 2006,
-        type: "TV",
-        episodes: 37,
-        rating: 9.0,
-        genres: [
-            "Детектив",
-            "Драма",
-            "Фантастика"
-        ],
-        poster:
-        "https://images.unsplash.com/photo-1535016120720-40c646be5580?w=600",
-        description:
-        "Старшеклассник получает загадочную тетрадь, способную убивать людей."
-    },
+/* ДАННЫЕ SUPABASE */
+
+const SUPABASE_URL =
+    "https://oitfdsoryrxlzgmqhqrq.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_umItz7Y1LhxpgkYj4o7DsA_U9utqT8X";
 
 
-    {
-        id: 3,
-        title: "Твоё имя",
-        year: 2016,
-        type: "Фильм",
-        episodes: 1,
-        rating: 9.0,
-        genres: [
-            "Романтика",
-            "Фэнтези",
-            "Драма"
-        ],
-        poster:
-        "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600",
-        description:
-        "История двух подростков, которые загадочным образом начинают меняться телами."
-    },
+/* ЗАГРУЗКА АНИМЕ */
+
+async function loadAnime() {
+
+    try {
+
+        const response = await fetch(
+            `${SUPABASE_URL}/rest/v1/anime?select=*`,
+            {
+                method: "GET",
+
+                headers: {
+                    "apikey": SUPABASE_KEY,
+                    "Authorization":
+                        `Bearer ${SUPABASE_KEY}`
+                }
+            }
+        );
 
 
-    {
-        id: 4,
-        title: "Клинок, рассекающий демонов",
-        year: 2019,
-        type: "TV",
-        episodes: 26,
-        rating: 8.7,
-        genres: [
-            "Экшен",
-            "Фэнтези"
-        ],
-        poster:
-        "https://images.unsplash.com/photo-1578632292335-df3abbb0d586?w=600",
-        description:
-        "Тандзиро становится охотником на демонов, чтобы вернуть своей сестре человеческий облик."
-    },
+        if (!response.ok) {
+
+            throw new Error(
+                "Ошибка загрузки Supabase"
+            );
+
+        }
 
 
-    {
-        id: 5,
-        title: "Моя геройская академия",
-        year: 2016,
-        type: "TV",
-        episodes: 13,
-        rating: 8.0,
-        genres: [
-            "Экшен",
-            "Комедия"
-        ],
-        poster:
-        "https://images.unsplash.com/photo-1563089145-599997674d42?w=600",
-        description:
-        "В мире, где сверхспособности стали нормой, юноша мечтает стать настоящим героем."
-    },
+        animeList =
+            await response.json();
 
 
-    {
-        id: 6,
-        title: "Ванпанчмен",
-        year: 2015,
-        type: "TV",
-        episodes: 12,
-        rating: 8.6,
-        genres: [
-            "Экшен",
-            "Комедия"
-        ],
-        poster:
-        "https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=600",
-        description:
-        "Сайтама настолько силён, что способен победить любого противника одним ударом."
-    },
+        renderHome();
+
+        renderFavorites();
+
+        updateStats();
 
 
-    {
-        id: 7,
-        title: "Хоримия",
-        year: 2021,
-        type: "TV",
-        episodes: 13,
-        rating: 8.2,
-        genres: [
-            "Романтика",
-            "Комедия",
-            "Драма"
-        ],
-        poster:
-        "https://images.unsplash.com/photo-1518709779341-56cf4535e94b?w=600",
-        description:
-        "Двое школьников обнаруживают, что их настоящие личности сильно отличаются от того, что видят окружающие."
-    },
+    } catch (error) {
+
+        console.error(
+            "Supabase:",
+            error
+        );
 
 
-    {
-        id: 8,
-        title: "Мифический дух: Духовные хроники",
-        year: 2021,
-        type: "TV",
-        episodes: 12,
-        rating: 7.8,
-        genres: [
-            "Фэнтези",
-            "Экшен",
-            "Романтика"
-        ],
-        poster:
-        "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600",
-        description:
-        "Парень оказывается в мире магии, духов и невероятных приключений."
-    },
+        document.getElementById(
+            "homeGrid"
+        ).innerHTML = `
 
+            <div class="empty">
 
-    {
-        id: 9,
-        title: "Баскетбол Куроко",
-        year: 2012,
-        type: "TV",
-        episodes: 25,
-        rating: 8.4,
-        genres: [
-            "Спорт",
-            "Комедия",
-            "Драма"
-        ],
-        poster:
-        "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600",
-        description:
-        "История команды школьников, мечтающих стать лучшими баскетболистами."
-    },
+                <div class="empty-icon">
+                    ⚠️
+                </div>
 
+                Не удалось загрузить
+                каталог аниме.
 
-    {
-        id: 10,
-        title: "Магическая битва",
-        year: 2020,
-        type: "TV",
-        episodes: 24,
-        rating: 8.8,
-        genres: [
-            "Экшен",
-            "Фэнтези",
-            "Ужасы"
-        ],
-        poster:
-        "https://images.unsplash.com/photo-1578632292335-df3abbb0d586?w=600",
-        description:
-        "Юдзи Итадори оказывается втянут в мир проклятий и магов."
-    },
+            </div>
 
+        `;
 
-    {
-        id: 11,
-        title: "Без игры — жизни нет",
-        year: 2014,
-        type: "TV",
-        episodes: 12,
-        rating: 8.1,
-        genres: [
-            "Игры",
-            "Фэнтези",
-            "Комедия"
-        ],
-        poster:
-        "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600",
-        description:
-        "Брат и сестра попадают в мир, где все конфликты решаются при помощи игр."
-    },
-
-
-    {
-        id: 12,
-        title: "Тёмный дворецкий",
-        year: 2008,
-        type: "TV",
-        episodes: 24,
-        rating: 8.3,
-        genres: [
-            "Детектив",
-            "Драма",
-            "Фэнтези"
-        ],
-        poster:
-        "https://images.unsplash.com/photo-1518709779341-56cf4535e94b?w=600",
-        description:
-        "Молодой аристократ заключает загадочный контракт с демоном."
     }
 
-];
+}
 
-
+                                   
 /* =====================================================
    СОСТОЯНИЕ ПРИЛОЖЕНИЯ
 ===================================================== */
