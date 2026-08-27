@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Мираж Anime</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #08090d;
+    color: white;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+}
+
+/* =========================
+   ШАПКА
+========================= */
+
+header {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    background: rgba(8,9,13,0.95);
+}
+
+.logo {
+    position: relative;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    background: linear-gradient(
+        110deg,
+        #777,
+        #eeeeee,
+        #999,
+        #ffffff,
+        #777
+    );
+
+    background-size: 300% 100%;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    animation: shine 4s linear infinite;
+}
+
+@keyframes shine {
+    0% {
+        background-position: 300% 0;
+    }
+
+    100% {
+        background-position: -300% 0;
+    }
+}
+
+/* =========================
+   ОСНОВНОЙ КОНТЕНТ
+========================= */
+
+main {
+    padding: 30px 18px 100px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* =========================
+   ЗАГОЛОВОК
+========================= */
+
+.section-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 22px;
+}
+
+/* =========================
+   КАРТОЧКИ
+========================= */
+
+.anime-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.anime-card {
+    position: relative;
+
+    aspect-ratio: 2 / 3;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #15171d,
+            #0e0f14
+        );
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.anime-card::after {
+    content: "";
+    position: absolute;
+
+    inset: 0;
+
+    background: linear-gradient(
+        135deg,
+        transparent 35%,
+        rgba(255,255,255,0.05),
+        transparent 65%
+    );
+
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.anime-card:hover {
+    transform: translateY(-4px);
+
+    border-color: rgba(255,255,255,0.2);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.45);
+}
+
+.anime-card:hover::after {
+    opacity: 1;
+}
+
+/* =========================
+   НИЖНЯЯ НАВИГАЦИЯ
+========================= */
+
+.bottom-nav {
+    position: fixed;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 72px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(10,11,16,0.96);
+
+    backdrop-filter: blur(12px);
+
+    border-top: 1px solid rgba(255,255,255,0.08);
+
+    z-index: 100;
+}
+
+.nav-container {
+    width: 100%;
+    max-width: 500px;
+
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-button {
+    border: none;
+    background: transparent;
+
+    color: #777;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 5px;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition: color 0.25s ease;
+}
+
+.nav-icon {
+    font-size: 23px;
+}
+
+.nav-button.active {
+    color: #ffffff;
+}
+
+/* =========================
+   ПУСТЫЕ СТРАНИЦЫ
+========================= */
+
+.empty-page {
+    min-height: calc(100vh - 200px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #555;
+
+    font-size: 15px;
+}
+
+/* =========================
+   АДАПТАЦИЯ
+========================= */
+
+@media (min-width: 700px) {
+
+    main {
+        max-width: 1100px;
+        margin: auto;
+    }
+
+    .anime-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .anime-card {
+        aspect-ratio: 2 / 3;
+    }
+}
+
+@media (max-width: 360px) {
+
+    .anime-grid {
+        gap: 10px;
+    }
+
+    main {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .logo {
+        font-size: 26px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     ШАПКА
+========================= -->
+
+<header>
+    <div class="logo">
+        Мираж Anime
+    </div>
+</header>
+
+
+<!-- =========================
+     СТРАНИЦЫ
+========================= -->
+
+<main>
+
+    <!-- ГЛАВНАЯ -->
+
+    <section id="home" class="page active">
+
+        <div class="section-title">
+            Аниме
+        </div>
+
+        <div class="anime-grid">
+
+            <div class="anime-card"></div>
+
+            <div class="anime-card"></div>
+
+            <div class="anime-card"></div>
+
+            <div class="anime-card"></div>
+
+            <div class="anime-card"></div>
+
+            <div class="anime-card"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ИЗБРАННОЕ -->
+
+    <section id="favorites" class="page">
+
+        <div class="empty-page">
+            Здесь пока ничего нет
+        </div>
+
+    </section>
+
+
+    <!-- ПРОФИЛЬ -->
+
+    <section id="profile" class="page">
+
+        <div class="empty-page">
+            Профиль пока пуст
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     НИЖНЯЯ НАВИГАЦИЯ
+========================= -->
+
+<nav class="bottom-nav">
+
+    <div class="nav-container">
+
+        <button
+            class="nav-button active"
+            onclick="openPage('home', this)"
+        >
+            <span class="nav-icon">⌂</span>
+            <span>Главная</span>
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="openPage('favorites', this)"
+        >
+            <span class="nav-icon">♡</span>
+            <span>Избранное</span>
+        </button>
+
+
+        <button
+            class="nav-button"
+            onclick="openPage('profile', this)"
+        >
+            <span class="nav-icon">♙</span>
+            <span>Профиль</span>
+        </button>
+
+    </div>
+
+</nav>
+
+
+<script>
+
+/* =========================
+   ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ
+========================= */
+
+function openPage(pageId, button) {
+
+    // Скрываем все страницы
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+    });
+
+    // Показываем выбранную
+    document.getElementById(pageId).classList.add('active');
+
+    // Убираем active со всех кнопок
+    document.querySelectorAll('.nav-button').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    // Активируем нажатую кнопку
+    button.classList.add('active');
+
+    // Возвращаем страницу вверх
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+</script>
+
+</body>
+  </html>
