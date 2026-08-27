@@ -10,224 +10,519 @@
 
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
+    margin: 0;
     background: #08090d;
     color: #fff;
     font-family: Arial, sans-serif;
-    min-height: 100vh;
 }
 
-/* =========================
-   ОБЩАЯ ШАПКА
-========================= */
-
-.site-header {
-    padding: 20px 16px 17px;
-
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-
-    background: rgba(8,9,13,0.97);
+button,
+input,
+select {
+    font-family: inherit;
 }
 
-/* =========================
-   ЛОГОТИП
-========================= */
+/* ================= HEADER ================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background: rgba(8, 9, 13, 0.94);
+    backdrop-filter: blur(16px);
+
+    border-bottom: 1px solid #1d2028;
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: auto;
+
+    padding: 15px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
 
 .logo {
+    font-size: 22px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.logo span {
+    color: #c9cbd0;
+}
+
+nav {
+    display: flex;
+    gap: 6px;
+}
+
+nav button {
+    background: transparent;
+    border: 0;
+
+    color: #888b95;
+
+    padding: 10px 13px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    transition: 0.2s;
+}
+
+nav button:hover,
+nav button.active {
+    background: #171920;
+    color: #fff;
+}
+
+
+/* ================= MAIN ================= */
+
+main {
+    max-width: 1200px;
+    margin: auto;
+
+    padding: 30px 20px 100px;
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    padding: 20px 0 35px;
+}
+
+.hero-title {
     text-align: center;
 
-    font-size: 25px;
+    margin-bottom: 28px;
+}
+
+.hero-title h1 {
+    position: relative;
+
+    display: inline-block;
+
+    margin: 0;
+
+    font-size: 38px;
 
     font-weight: 700;
 
     letter-spacing: 1px;
 
+    color: #cfd1d6;
+
     background: linear-gradient(
         110deg,
-        #707070,
-        #eeeeee,
-        #999999,
+        #777a82,
+        #f4f4f5,
+        #858891,
         #ffffff,
-        #707070
+        #777a82
     );
 
-    background-size: 300% 100%;
+    background-size: 250% auto;
 
     -webkit-background-clip: text;
     background-clip: text;
 
     color: transparent;
 
-    animation: shine 4s linear infinite;
-
-    margin-bottom: 19px;
+    animation: silverShine 5s linear infinite;
 }
 
-@keyframes shine {
+@keyframes silverShine {
 
     0% {
-        background-position: 300% 0;
+        background-position: 250% center;
     }
 
     100% {
-        background-position: -300% 0;
+        background-position: -250% center;
     }
 
 }
 
-/* =========================
-   ПОИСК
-========================= */
-
-.search-button {
-
-    display: block;
-
-    width: 220px;
-
-    height: 39px;
-
-    border-radius: 20px;
-
-    border: 1px solid rgba(255,255,255,0.16);
-
-    background: rgba(255,255,255,0.05);
-
-    color: #d5d5d5;
+.hero-subtitle {
+    color: #777b86;
 
     font-size: 14px;
 
-    cursor: pointer;
-
-    transition: all 0.25s ease;
-
-    margin-left: 0;
+    margin-top: 8px;
 }
 
-.search-button:hover {
 
-    background: rgba(255,255,255,0.10);
+/* ================= AUTH ================= */
 
-    border-color: rgba(255,255,255,0.28);
+.auth-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-bottom: 25px;
+}
+
+.auth-btn {
+    padding: 10px 18px;
+
+    border-radius: 10px;
+
+    border: 1px solid #2a2d35;
+
+    background: #12141a;
 
     color: #fff;
 
+    cursor: pointer;
+
+    transition: 0.2s;
 }
 
-.search-button:active {
-
-    transform: scale(0.97);
-
+.auth-btn:hover {
+    background: #1c1f27;
 }
 
-/* =========================
-   ОСНОВНОЙ КОНТЕНТ
-========================= */
+.auth-btn.register {
+    background: #d5d6d9;
 
-main {
+    border-color: #d5d6d9;
 
-    padding: 21px 15px 90px;
-
+    color: #08090d;
 }
 
-.page {
+.auth-btn.register:hover {
+    background: #fff;
+}
 
+
+/* ================= SEARCH ================= */
+
+.search-area {
+    max-width: 720px;
+
+    margin: auto;
+}
+
+.search-wrapper {
+    display: flex;
+
+    gap: 8px;
+
+    width: 100%;
+}
+
+.search {
+    flex: 1;
+
+    min-width: 0;
+
+    height: 50px;
+
+    padding: 0 17px;
+
+    background: #11131a;
+
+    border: 1px solid #252832;
+
+    border-radius: 13px;
+
+    outline: none;
+
+    color: #fff;
+
+    font-size: 15px;
+}
+
+.search::placeholder {
+    color: #696d78;
+}
+
+.search:focus {
+    border-color: #676a73;
+}
+
+
+/* ================= FILTER BUTTON ================= */
+
+.filter-search-btn {
+    width: 50px;
+
+    min-width: 50px;
+
+    height: 50px;
+
+    border-radius: 13px;
+
+    background: #11131a;
+
+    border: 1px solid #252832;
+
+    color: #d4d5d8;
+
+    font-size: 21px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition: 0.2s;
+}
+
+.filter-search-btn:hover,
+.filter-search-btn.active {
+    background: #252831;
+
+    border-color: #555861;
+}
+
+
+/* ================= FILTER PANEL ================= */
+
+.filter-panel {
     display: none;
 
+    margin-top: 10px;
+
+    padding: 18px;
+
+    background: #101219;
+
+    border: 1px solid #292c35;
+
+    border-radius: 15px;
 }
 
-.page.active {
-
+.filter-panel.show {
     display: block;
-
 }
 
-/* =========================
-   ЗАГОЛОВОК
-========================= */
-
-.section-title {
-
-    font-size: 18px;
-
-    font-weight: 600;
-
-    margin-bottom: 16px;
-
+.filter-group {
+    margin-bottom: 18px;
 }
 
-/* =========================
-   СЕТКА
-========================= */
+.filter-group:last-child {
+    margin-bottom: 0;
+}
+
+.filter-group-title {
+    color: #b7bac2;
+
+    font-size: 13px;
+
+    margin-bottom: 10px;
+
+    font-weight: bold;
+}
+
+.filter-options {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+}
+
+.filter-option {
+    background: #191c23;
+
+    border: 1px solid #292c34;
+
+    color: #92959e;
+
+    padding: 9px 12px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    transition: 0.2s;
+}
+
+.filter-option:hover {
+    background: #23262f;
+
+    color: #fff;
+}
+
+.filter-option.selected {
+    background: #d2d3d6;
+
+    border-color: #d2d3d6;
+
+    color: #08090d;
+}
+
+
+/* ================= FILTER ACTIONS ================= */
+
+.filter-actions {
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 20px;
+
+    padding-top: 15px;
+
+    border-top: 1px solid #242730;
+}
+
+.filter-search {
+    flex: 1;
+
+    border: 0;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    background: #d4d5d8;
+
+    color: #08090d;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.filter-reset {
+    flex: 1;
+
+    border: 1px solid #2b2e37;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    background: #181a21;
+
+    color: #aaaeb7;
+
+    cursor: pointer;
+}
+
+.filter-reset:hover {
+    background: #22252d;
+
+    color: #fff;
+}
+
+
+/* ================= GRID ================= */
 
 .anime-grid {
-
     display: grid;
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(5, 1fr);
 
-    gap: 12px;
-
-    max-width: 360px;
-
-    margin: 0 auto;
-
+    gap: 18px;
 }
 
-/* =========================
-   КАРТОЧКА
-========================= */
 
-.anime-card {
+/* ================= CARD ================= */
 
+.card {
+    position: relative;
+
+    background: #101219;
+
+    border: 1px solid #1e212a;
+
+    border-radius: 13px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s,
+        border-color 0.25s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+
+    border-color: #41444e;
+}
+
+.poster-wrapper {
     position: relative;
 
     width: 100%;
 
-    aspect-ratio: 0.62 / 1;
-
-    border-radius: 9px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #15171d,
-            #0d0e13
-        );
-
-    border: 1px solid rgba(255,255,255,0.07);
+    aspect-ratio: 2 / 3;
 
     overflow: hidden;
 
-    transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        box-shadow 0.25s ease;
-
+    background: #161820;
 }
 
-.anime-card:hover {
+.poster {
+    width: 100%;
 
-    transform: translateY(-3px);
+    height: 100%;
 
-    border-color: rgba(255,255,255,0.18);
+    object-fit: cover;
 
-    box-shadow:
-        0 7px 20px rgba(0,0,0,0.45);
+    display: block;
 
+    transition: transform 0.3s;
 }
 
-/* =========================
-   ПУСТЫЕ СТРАНИЦЫ
-========================= */
+.card:hover .poster {
+    transform: scale(1.03);
+}
 
-.empty-page {
 
-    min-height: calc(100vh - 155px);
+/* ================= RATING ================= */
+
+.card-rating {
+    position: absolute;
+
+    top: 9px;
+
+    left: 9px;
+
+    min-width: 43px;
+
+    height: 25px;
+
+    padding: 0 7px;
 
     display: flex;
 
@@ -235,167 +530,1042 @@ main {
 
     justify-content: center;
 
-    color: #4f4f4f;
+    background: rgba(100, 103, 109, 0.92);
+
+    border-radius: 5px;
+
+    color: #ffd83d;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    z-index: 2;
+}
+
+
+/* ================= FAVORITE ================= */
+
+.favorite {
+    position: absolute;
+
+    top: 8px;
+
+    right: 8px;
+
+    width: 34px;
+
+    height: 34px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    background: rgba(0,0,0,0.65);
+
+    color: #fff;
+
+    font-size: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    z-index: 3;
+}
+
+.favorite.active {
+    color: #ffd83d;
+}
+
+
+/* ================= CARD TITLE ================= */
+
+.card-info {
+    padding: 11px 10px 13px;
+}
+
+.card-title {
+    color: #cfd1d5;
 
     font-size: 14px;
 
+    font-weight: 600;
+
+    line-height: 1.35;
+
+    text-align: center;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
 }
 
-/* =========================
-   НИЖНЯЯ НАВИГАЦИЯ
-========================= */
 
-.bottom-nav {
+/* ================= EMPTY ================= */
 
-    position: fixed;
+.empty {
+    grid-column: 1 / -1;
 
-    left: 0;
+    text-align: center;
 
-    right: 0;
+    color: #6f727d;
 
-    bottom: 0;
+    padding: 60px 20px;
+}
 
-    height: 65px;
+.empty-icon {
+    font-size: 42px;
 
+    margin-bottom: 12px;
+}
+
+
+/* ================= FAVORITES ================= */
+
+.favorites-header {
+    margin-bottom: 22px;
+}
+
+.favorites-header h2 {
+    margin: 0 0 15px;
+
+    font-size: 27px;
+
+    color: #d2d3d6;
+}
+
+.status-filters {
     display: flex;
 
-    justify-content: center;
+    gap: 7px;
 
-    align-items: center;
+    overflow-x: auto;
 
-    background: rgba(10,11,16,0.97);
-
-    backdrop-filter: blur(12px);
-
-    border-top: 1px solid rgba(255,255,255,0.07);
-
-    z-index: 100;
-
+    padding-bottom: 5px;
 }
 
-.nav-container {
+.status-filters::-webkit-scrollbar {
+    display: none;
+}
 
-    width: 100%;
+.status-btn {
+    flex-shrink: 0;
 
-    max-width: 430px;
+    padding: 9px 13px;
 
+    background: #11131a;
+
+    border: 1px solid #292c34;
+
+    color: #888c97;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+}
+
+.status-btn.active {
+    background: #d3d4d7;
+
+    border-color: #d3d4d7;
+
+    color: #08090d;
+}
+
+
+/* ================= PROFILE ================= */
+
+.profile-page {
+    max-width: 720px;
+
+    margin: auto;
+}
+
+.profile-title {
+    text-align: center;
+
+    font-size: 30px;
+
+    margin: 5px 0 28px;
+
+    color: #d3d4d7;
+}
+
+.profile-card {
+    background: #101219;
+
+    border: 1px solid #22252e;
+
+    border-radius: 18px;
+
+    padding: 28px 20px;
+}
+
+.profile-avatar-wrapper {
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+.profile-avatar {
+    width: 110px;
+
+    height: 110px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    display: block;
+
+    margin: auto;
+
+    background: #1a1c23;
+
+    border: 2px solid #3a3d46;
+}
+
+.avatar-button {
+    margin-top: 12px;
+
+    background: #1b1e25;
+
+    border: 1px solid #30333c;
+
+    color: #bfc1c7;
+
+    padding: 9px 14px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+}
+
+.avatar-button:hover {
+    background: #252831;
+}
+
+
+/* ================= PROFILE INFO ================= */
+
+.profile-info {
+    border-top: 1px solid #242730;
+
+    border-bottom: 1px solid #242730;
+
+    padding: 8px 0;
+}
+
+.profile-row {
     display: flex;
 
-    justify-content: space-around;
+    justify-content: space-between;
 
+    gap: 20px;
+
+    padding: 14px 4px;
+
+    border-bottom: 1px solid #1e2129;
 }
 
-.nav-button {
+.profile-row:last-child {
+    border-bottom: 0;
+}
 
-    border: none;
+.profile-label {
+    color: #777b86;
 
-    background: transparent;
+    font-size: 14px;
+}
 
-    color: #707070;
+.profile-value {
+    color: #d0d1d5;
 
+    font-size: 14px;
+
+    text-align: right;
+}
+
+
+/* ================= PROFILE SECTIONS ================= */
+
+.profile-menu {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+.profile-menu-button {
+    padding: 15px;
+
+    background: #16181f;
+
+    border: 1px solid #272a33;
+
+    border-radius: 11px;
+
+    color: #c0c2c8;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    font-size: 14px;
+}
+
+.profile-menu-button:hover {
+    background: #20232b;
+}
+
+.profile-menu-button span {
+    display: block;
+
+    font-size: 21px;
+
+    margin-bottom: 6px;
+}
+        
+/* ================= PROFILE NEWS ================= */
+
+.profile-section-box {
+    margin-top: 15px;
+
+    background: #101219;
+
+    border: 1px solid #22252e;
+
+    border-radius: 15px;
+
+    padding: 18px;
+}
+
+.profile-section-title {
+    color: #d1d3d7;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    margin-bottom: 15px;
+}
+
+.project-news {
+    padding: 13px;
+
+    background: #171920;
+
+    border-radius: 10px;
+
+    margin-bottom: 8px;
+}
+
+.project-news:last-child {
+    margin-bottom: 0;
+}
+
+.news-title {
+    color: #d5d6d9;
+
+    font-size: 14px;
+
+    margin-bottom: 5px;
+}
+
+.news-date {
+    color: #686c77;
+
+    font-size: 11px;
+}
+
+
+/* ================= FRIENDS ================= */
+
+.friends-list {
     display: flex;
 
     flex-direction: column;
 
+    gap: 8px;
+}
+
+.friend-item {
+    display: flex;
+
     align-items: center;
 
-    gap: 3px;
+    gap: 12px;
 
-    font-size: 10px;
+    padding: 10px;
+
+    background: #171920;
+
+    border-radius: 10px;
 
     cursor: pointer;
-
-    transition: color 0.25s ease;
-
 }
 
-.nav-icon {
-
-    font-size: 20px;
-
+.friend-item:hover {
+    background: #20232b;
 }
 
-.nav-button.active {
+.friend-avatar {
+    width: 43px;
+
+    height: 43px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    background: #242730;
+}
+
+.friend-name {
+    color: #d2d3d7;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.friend-status {
+    color: #70747e;
+
+    font-size: 11px;
+
+    margin-top: 3px;
+}
+
+.add-friend-button {
+    width: 100%;
+
+    margin-top: 10px;
+
+    padding: 12px;
+
+    border: 1px solid #30333c;
+
+    background: #191c23;
+
+    color: #c5c7cc;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+.add-friend-button:hover {
+    background: #252831;
+}
+
+
+/* ================= MESSAGES ================= */
+
+.message-item {
+    padding: 13px;
+
+    background: #171920;
+
+    border-radius: 10px;
+
+    margin-bottom: 8px;
+}
+
+.message-item:last-child {
+    margin-bottom: 0;
+}
+
+.message-author {
+    color: #d3d4d8;
+
+    font-weight: bold;
+
+    font-size: 13px;
+
+    margin-bottom: 5px;
+}
+
+.message-text {
+    color: #888c96;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* ================= MODAL ================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 500;
+
+    background: rgba(0,0,0,0.78);
+
+    backdrop-filter: blur(8px);
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 18px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-box {
+    width: 100%;
+
+    max-width: 650px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: #101219;
+
+    border: 1px solid #292c35;
+
+    border-radius: 18px;
+
+    padding: 22px;
+}
+
+.modal-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 18px;
+}
+
+.modal-header h2 {
+    margin: 0;
+
+    color: #d3d4d8;
+
+    font-size: 21px;
+}
+
+.close-button {
+    width: 34px;
+
+    height: 34px;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background: #20232b;
 
     color: #fff;
 
+    cursor: pointer;
+
+    font-size: 15px;
 }
 
-/* =========================
-   МАЛЕНЬКИЕ ЭКРАНЫ
-========================= */
 
-@media (max-width: 360px) {
+/* ================= ANIME DETAILS ================= */
 
-    .site-header {
+.anime-details {
+    display: flex;
 
-        padding: 18px 12px 16px;
+    gap: 20px;
+}
 
+.anime-details-poster {
+    width: 180px;
+
+    height: 270px;
+
+    object-fit: cover;
+
+    border-radius: 11px;
+
+    flex-shrink: 0;
+}
+
+.anime-details-info {
+    flex: 1;
+}
+
+.anime-details-info h3 {
+    margin: 0 0 12px;
+
+    font-size: 21px;
+
+    color: #d4d5d9;
+}
+
+.anime-meta {
+    color: #9a9da6;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+.anime-meta strong {
+    color: #d0d1d5;
+}
+
+.anime-description {
+    margin-top: 15px;
+
+    color: #8b8f99;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* ================= STATUS SELECT ================= */
+
+.status-select {
+    width: 100%;
+
+    margin-top: 15px;
+
+    padding: 12px;
+
+    background: #191c23;
+
+    border: 1px solid #2b2e37;
+
+    color: #d0d1d5;
+
+    border-radius: 10px;
+
+    outline: none;
+}
+
+
+/* ================= COMMENTS ================= */
+
+.comments-box {
+    margin-top: 22px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #252832;
+}
+
+.comments-title {
+    color: #d2d3d7;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    margin-bottom: 13px;
+}
+
+.comment-input-wrapper {
+    display: flex;
+
+    gap: 7px;
+}
+
+.comment-input {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 11px 12px;
+
+    background: #191c23;
+
+    border: 1px solid #292c35;
+
+    border-radius: 9px;
+
+    color: #fff;
+
+    outline: none;
+}
+
+.comment-button {
+    padding: 0 15px;
+
+    border: 0;
+
+    border-radius: 9px;
+
+    background: #d2d3d6;
+
+    color: #08090d;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.comments-list {
+    margin-top: 13px;
+}
+
+.comment {
+    background: #171920;
+
+    border-radius: 10px;
+
+    padding: 11px;
+
+    margin-bottom: 7px;
+}
+
+.comment-user {
+    color: #d0d1d5;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    margin-bottom: 5px;
+}
+
+.comment-text {
+    color: #888c96;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* ================= AUTH MODAL ================= */
+
+.auth-content {
+    text-align: center;
+}
+
+.auth-logo {
+    font-size: 27px;
+
+    font-weight: bold;
+
+    margin-bottom: 7px;
+
+    color: #d3d4d8;
+}
+
+.auth-subtitle {
+    color: #717580;
+
+    font-size: 13px;
+
+    margin-bottom: 20px;
+}
+
+.auth-input {
+    width: 100%;
+
+    padding: 13px;
+
+    margin-bottom: 9px;
+
+    background: #191c23;
+
+    border: 1px solid #2b2e37;
+
+    border-radius: 10px;
+
+    color: white;
+
+    outline: none;
+}
+
+.auth-input:focus {
+    border-color: #646770;
+}
+
+.auth-submit {
+    width: 100%;
+
+    padding: 13px;
+
+    margin-top: 5px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background: #d4d5d8;
+
+    color: #08090d;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+
+/* ================= FRIEND PROFILE ================= */
+
+.friend-profile {
+    text-align: center;
+}
+
+.friend-profile-avatar {
+    width: 105px;
+
+    height: 105px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 2px solid #3a3d46;
+
+    margin-bottom: 12px;
+}
+
+.friend-profile-name {
+    color: #d4d5d8;
+
+    font-size: 21px;
+
+    font-weight: bold;
+}
+
+.friend-profile-date {
+    color: #777b86;
+
+    font-size: 12px;
+
+    margin-top: 6px;
+}
+
+.friend-action {
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 18px;
+
+    background: #d3d4d7;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    color: #08090d;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+
+/* ================= MOBILE NAV ================= */
+
+.mobile-nav {
+    display: none;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 950px) {
+
+    .anime-grid {
+        grid-template-columns:
+            repeat(4, 1fr);
     }
 
-    .logo {
+}
 
-        font-size: 23px;
 
-        margin-bottom: 18px;
+@media (max-width: 700px) {
 
-    }
-
-    .search-button {
-
-        width: 205px;
-
-        height: 37px;
-
-        font-size: 13px;
-
+    header {
+        display: none;
     }
 
     main {
+        padding:
+            20px 13px 90px;
+    }
 
-        padding-left: 11px;
-
-        padding-right: 11px;
-
+    .hero-title h1 {
+        font-size: 31px;
     }
 
     .anime-grid {
+        grid-template-columns:
+            repeat(3, 1fr);
 
-        max-width: 330px;
-
-        gap: 9px;
-
+        gap: 12px;
     }
 
-    .section-title {
+    .anime-details {
+        flex-direction: column;
+    }
 
-        font-size: 17px;
+    .anime-details-poster {
+        width: 145px;
 
+        height: 215px;
+
+        margin: auto;
+    }
+
+    .profile-menu {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .mobile-nav {
+        position: fixed;
+
+        display: flex;
+
+        left: 0;
+
+        right: 0;
+
+        bottom: 0;
+
+        height: 66px;
+
+        z-index: 300;
+
+        background:
+            rgba(12,13,18,0.97);
+
+        backdrop-filter: blur(15px);
+
+        border-top:
+            1px solid #242730;
+
+        justify-content:
+            space-around;
+
+        align-items: center;
+    }
+
+    .mobile-nav button {
+        border: 0;
+
+        background: none;
+
+        color: #777b86;
+
+        font-size: 10px;
+
+        cursor: pointer;
+    }
+
+    .mobile-nav-icon {
+        display: block;
+
+        font-size: 21px;
+
+        margin-bottom: 3px;
+    }
+
+    .mobile-nav button.active {
+        color: #d5d6d9;
     }
 
 }
 
 
-/* =========================
-   БОЛЬШИЕ ЭКРАНЫ
-========================= */
+@media (max-width: 500px) {
 
-@media (min-width: 700px) {
+    .anime-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
 
-    .site-header {
-
-        max-width: 900px;
-
-        margin: auto;
-
+        gap: 11px;
     }
 
-    main {
+    .hero-title h1 {
+        font-size: 28px;
+    }
 
-        max-width: 900px;
+    .filter-actions {
+        flex-direction: column;
+    }
 
-        margin: auto;
+    .filter-search,
+    .filter-reset {
+        width: 100%;
+    }
 
+    .profile-card {
+        padding: 22px 15px;
+    }
+
+    .profile-menu {
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+
+@media (max-width: 380px) {
+
+    .card-title {
+        font-size: 13px;
+    }
+
+    .card-info {
+        padding:
+            9px 7px 11px;
+    }
+
+    .card-rating {
+        top: 7px;
+
+        left: 7px;
+
+        min-width: 39px;
+
+        height: 23px;
+
+        font-size: 11px;
+    }
+
+    .favorite {
+        top: 6px;
+
+        right: 6px;
+
+        width: 31px;
+
+        height: 31px;
+
+        font-size: 18px;
     }
 
 }
@@ -403,212 +1573,3258 @@ main {
 </style>
 </head>
 
+
 <body>
 
 
-<!-- ==================================================
-     ШАПКА ГЛАВНОЙ
-     Она находится только внутри страницы HOME
-================================================== -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
-<section id="home-header" class="site-header">
+<header>
 
-    <div class="logo">
-        Мираж Anime
+    <div class="header-inner">
+
+        <div class="logo">
+            ✦ <span>Мираж</span> Anime
+        </div>
+
+
+        <nav>
+
+            <button
+                class="active"
+                onclick="showSection('home', this)"
+            >
+                Главная
+            </button>
+
+
+            <button
+                onclick="showSection('favorites', this)"
+            >
+                ⭐ Избранное
+            </button>
+
+
+            <button
+                onclick="showSection('profile', this)"
+            >
+                👤 Профиль
+            </button>
+
+        </nav>
+
     </div>
 
-    <button
-        class="search-button"
-        onclick="searchAnime()"
-    >
-        🔍 Искать аниме
-    </button>
-
-</section>
+</header>
 
 
-<!-- ==================================================
-     СТРАНИЦЫ
-================================================== -->
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 <main>
 
 
-    <!-- =========================
-         ГЛАВНАЯ
-    ========================= -->
+<!-- =====================================================
+     HOME
+===================================================== -->
 
-    <section id="home" class="page active">
+<section
+    id="home"
+    class="section active"
+>
 
-        <div class="section-title">
-            Аниме
+
+    <div class="hero">
+
+
+        <div class="hero-title">
+
+            <h1>
+                Мираж Anime
+            </h1>
+
+            <div class="hero-subtitle">
+                Твоя коллекция аниме
+            </div>
+
         </div>
 
-        <div class="anime-grid">
 
-            <div class="anime-card"></div>
+        <div class="auth-buttons">
 
-            <div class="anime-card"></div>
+            <button
+                class="auth-btn"
+                onclick="openAuth('login')"
+            >
+                Войти
+            </button>
+
+
+            <button
+                class="auth-btn register"
+                onclick="openAuth('register')"
+            >
+                Регистрация
+            </button>
 
         </div>
 
-    </section>
+
+        <!-- SEARCH -->
+
+        <div class="search-area">
 
 
-    <!-- =========================
-         ИЗБРАННОЕ
-    ========================= -->
+            <div class="search-wrapper">
 
-    <section id="favorites" class="page">
+                <input
+                    id="homeSearch"
+                    class="search"
+                    type="text"
+                    placeholder="🔍 Найти аниме..."
+                    oninput="searchAnime(this.value)"
+                >
 
-        <div class="empty-page">
-            Здесь пока ничего нет
+
+                <button
+                    id="filterSearchButton"
+                    class="filter-search-btn"
+                    onclick="toggleFilterPanel()"
+                    title="Фильтр"
+                >
+                    ☰
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 FILTER PANEL
+            ================================================= -->
+
+            <div
+                id="filterPanel"
+                class="filter-panel"
+            >
+
+
+                <!-- TYPE -->
+
+                <div class="filter-group">
+
+                    <div class="filter-group-title">
+                        Тип
+                    </div>
+
+
+                    <div class="filter-options">
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="type"
+                            data-value="TV"
+                            onclick="selectFilter('type','TV',this)"
+                        >
+                            TV сериалы
+                        </button>
+
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="type"
+                            data-value="Фильм"
+                            onclick="selectFilter('type','Фильм',this)"
+                        >
+                            Фильмы
+                        </button>
+
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="type"
+                            data-value="OVA"
+                            onclick="selectFilter('type','OVA',this)"
+                        >
+                            OVA
+                        </button>
+
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="type"
+                            data-value="ONA"
+                            onclick="selectFilter('type','ONA',this)"
+                        >
+                            ONA
+                        </button>
+
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="type"
+                            data-value="Анонс"
+                            onclick="selectFilter('type','Анонс',this)"
+                        >
+                            Анонсы
+                        </button>
+
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="type"
+                            data-value="Онгоинг"
+                            onclick="selectFilter('type','Онгоинг',this)"
+                        >
+                            Онгоинги
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- GENRES -->
+
+                <div class="filter-group">
+
+                    <div class="filter-group-title">
+                        Жанры
+                    </div>
+
+
+                    <div class="filter-options">
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="genre"
+                            data-value="Детектив"
+                            onclick="selectFilter('genre','Детектив',this)"
+                        >
+                            Детектив
+                        </button>
+
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="genre"
+                            data-value="Драма"
+                            onclick="selectFilter('genre','Драма',this)"
+                        >
+                            Драма
+                        </button>
+
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="genre"
+                            data-value="Комедия"
+                            onclick="selectFilter('genre','Комедия',this)"
+                        >
+                            Комедия
+                        </button>
+
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="genre"
+                            data-value="Фэнтези"
+                            onclick="selectFilter('genre','Фэнтези',this)"
+                        >
+                            Фэнтези
+                        </button>
+
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="genre"
+                            data-value="Экшен"
+                            onclick="selectFilter('genre','Экшен',this)"
+                        >
+                            Экшен
+                        </button>
+
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="genre"
+                            data-value="Игры"
+                            onclick="selectFilter('genre','Игры',this)"
+                        >
+                            Игры
+                        </button>
+
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="genre"
+                            data-value="Спорт"
+                            onclick="selectFilter('genre','Спорт',this)"
+                        >
+                            Спорт
+                        </button>
+
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="genre"
+                            data-value="Ужасы"
+                            onclick="selectFilter('genre','Ужасы',this)"
+                        >
+                            Ужасы
+                        </button>
+
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="genre"
+                            data-value="Фантастика"
+                            onclick="selectFilter('genre','Фантастика',this)"
+                        >
+                            Фантастика
+                        </button>
+
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="genre"
+                            data-value="Военная"
+                            onclick="selectFilter('genre','Военная',this)"
+                        >
+                            Военная
+                        </button>
+
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="genre"
+                            data-value="Романтика"
+                            onclick="selectFilter('genre','Романтика',this)"
+                        >
+                            Романтика
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- YEARS -->
+
+                <div class="filter-group">
+
+                    <div class="filter-group-title">
+                        Годы
+                    </div>
+
+
+                    <div class="filter-options">
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="year"
+                            data-value="1995-2000"
+                            onclick="selectFilter('year','1995-2000',this)"
+                        >
+                            1995–2000
+                        </button>
+
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="year"
+                            data-value="2001-2005"
+                            onclick="selectFilter('year','2001-2005',this)"
+                        >
+                            2001–2005
+                        </button>
+
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="year"
+                            data-value="2006-2010"
+                            onclick="selectFilter('year','2006-2010',this)"
+                        >
+                            2006–2010
+                        </button>
+
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="year"
+                            data-value="2011-2015"
+                            onclick="selectFilter('year','2011-2015',this)"
+                        >
+                            2011–2015
+                        </button>
+
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="year"
+                            data-value="2016-2020"
+                            onclick="selectFilter('year','2016-2020',this)"
+                        >
+                            2016–2020
+                        </button>
+
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="year"
+                            data-value="2021-2025"
+                            onclick="selectFilter('year','2021-2025',this)"
+                        >
+                            2021–2025
+                        </button>
+
+
+                        <button
+                            class="filter-option"
+                            data-filter-type="year"
+                            data-value="2026"
+                            onclick="selectFilter('year','2026',this)"
+                        >
+                            2026
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACTIONS -->
+
+                <div class="filter-actions">
+
+                    <button
+                        class="filter-search"
+                        onclick="applyFilters()"
+                    >
+                        🔎 Искать
+                    </button>
+
+
+                    <button
+                        class="filter-reset"
+                        onclick="resetFilters()"
+                    >
+                        ↻ Сбросить фильтр
+                    </button>
+
+                </div>
+
+
+            </div>
+
         </div>
 
-    </section>
+    </div>
 
 
-    <!-- =========================
-         ПРОФИЛЬ
-    ========================= -->
+    <!-- CARDS WITHOUT TITLE -->
 
-    <section id="profile" class="page">
+    <div
+        id="homeGrid"
+        class="anime-grid"
+    ></div>
 
-        <div class="empty-page">
-            Профиль пока пуст
+
+</section>
+
+
+<!-- =====================================================
+     FAVORITES
+===================================================== -->
+
+<section
+    id="favorites"
+    class="section"
+>
+
+
+    <div class="favorites-header">
+
+        <h2>
+            ⭐ Избранное
+        </h2>
+
+
+        <div class="status-filters">
+
+
+            <button
+                class="status-btn active"
+                onclick="filterStatus('all', this)"
+            >
+                Все
+            </button>
+
+
+            <button
+                class="status-btn"
+                onclick="filterStatus('Смотрю', this)"
+            >
+                👀 Смотрю
+            </button>
+
+
+            <button
+                class="status-btn"
+                onclick="filterStatus('Просмотрено', this)"
+            >
+                ✅ Просмотрено
+            </button>
+
+
+            <button
+                class="status-btn"
+                onclick="filterStatus('Брошено', this)"
+            >
+                ⏸️ Брошено
+            </button>
+
+
+            <button
+                class="status-btn"
+                onclick="filterStatus('Планирую', this)"
+            >
+                📌 Планирую
+            </button>
+
+
         </div>
 
-    </section>
+    </div>
+
+
+    <div
+        id="favoritesGrid"
+        class="anime-grid"
+    ></div>
+
+
+</section>
+
+
+<!-- =====================================================
+     PROFILE
+===================================================== -->
+
+<section
+    id="profile"
+    class="section"
+>
+
+
+    <div class="profile-page">
+
+
+        <h2 class="profile-title">
+            Профиль
+        </h2>
+
+
+        <div class="profile-card">
+
+
+            <div class="profile-avatar-wrapper">
+
+                <img
+                    id="profileAvatar"
+                    class="profile-avatar"
+                    src="https://i.imgur.com/6VBx3io.png"
+                    alt="Аватар"
+                >
+
+
+                <br>
+
+
+                <label
+                    class="avatar-button"
+                    for="avatarInput"
+                >
+                    🖼️ Выбрать аватар
+                </label>
+
+
+                <input
+                    id="avatarInput"
+                    type="file"
+                    accept="image/*"
+                    style="display:none"
+                    onchange="changeAvatar(event)"
+                >
+
+            </div>
+
+
+            <div class="profile-info">
+
+
+                <div class="profile-row">
+
+                    <span class="profile-label">
+                        Дата регистрации
+                    </span>
+
+                    <span
+                        id="registrationDate"
+                        class="profile-value"
+                    >
+                        —
+                    </span>
+
+                </div>
+
+
+                <div class="profile-row">
+
+                    <span class="profile-label">
+                        Имя пользователя
+                    </span>
+
+                    <span
+                        id="profileUsername"
+                        class="profile-value"
+                    >
+                        Гость
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="profile-menu">
+
+
+                <button
+                    class="profile-menu-button"
+                    onclick="openProfileSection('news')"
+                >
+
+                    <span>
+                        📰
+                    </span>
+
+                    Новости проекта
+
+                </button>
+
+
+                <button
+                    class="profile-menu-button"
+                    onclick="openProfileSection('messages')"
+                >
+
+                    <span>
+                        💬
+                    </span>
+
+                    Сообщения
+
+                </button>
+
+
+                <button
+                    class="profile-menu-button"
+                    onclick="openProfileSection('friends')"
+                >
+
+                    <span>
+                        👥
+                    </span>
+
+                    Друзья
+
+                </button>
+
+
+                <button
+                    class="profile-menu-button"
+                    onclick="openFriendAdd()"
+                >
+
+                    <span>
+                        ➕
+                    </span>
+
+                    Добавить друга
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- NEWS -->
+
+        <div
+            id="profileNews"
+            class="profile-section-box"
+            style="display:none"
+        >
+
+            <div class="profile-section-title">
+                📰 Новости проекта
+            </div>
+
+
+            <div class="project-news">
+
+                <div class="news-title">
+                    Добро пожаловать в Мираж Anime!
+                </div>
+
+                <div class="news-date">
+                    26.08.2026
+                </div>
+
+            </div>
+
+
+            <div class="project-news">
+
+                <div class="news-title">
+                    Скоро появятся новые возможности.
+                </div>
+
+                <div class="news-date">
+                    Новости проекта
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MESSAGES -->
+
+        <div
+            id="profileMessages"
+            class="profile-section-box"
+            style="display:none"
+        >
+
+            <div class="profile-section-title">
+                💬 Сообщения
+            </div>
+
+
+            <div class="message-item">
+
+                <div class="message-author">
+                    Мираж Anime
+                </div>
+
+                <div class="message-text">
+                    Здесь будут сообщения
+                    от проекта и друзей.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FRIENDS -->
+
+        <div
+            id="profileFriends"
+            class="profile-section-box"
+            style="display:none"
+        >
+
+            <div class="profile-section-title">
+                👥 Друзья
+            </div>
+
+
+            <div
+                id="friendsList"
+                class="friends-list"
+            ></div>
+
+
+            <button
+                class="add-friend-button"
+                onclick="openFriendAdd()"
+            >
+                + Добавить друга
+            </button>
+
+        </div>
+
+
+    </div>
+
+</section>
+<script>
+
+/* =====================================================
+   ДАННЫЕ АНИМЕ
+===================================================== */
+
+const animeList = [
+
+    {
+        id: 1,
+        title: "Атака титанов",
+        year: 2013,
+        type: "TV",
+        episodes: 25,
+        rating: 9.7,
+        genres: [
+            "Экшен",
+            "Драма",
+            "Фэнтези"
+        ],
+        poster:
+        "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600",
+        description:
+        "Человечество живёт за огромными стенами, пытаясь защититься от таинственных титанов."
+    },
+
+
+    {
+        id: 2,
+        title: "Тетрадь смерти",
+        year: 2006,
+        type: "TV",
+        episodes: 37,
+        rating: 9.0,
+        genres: [
+            "Детектив",
+            "Драма",
+            "Фантастика"
+        ],
+        poster:
+        "https://images.unsplash.com/photo-1535016120720-40c646be5580?w=600",
+        description:
+        "Старшеклассник получает загадочную тетрадь, способную убивать людей."
+    },
+
+
+    {
+        id: 3,
+        title: "Твоё имя",
+        year: 2016,
+        type: "Фильм",
+        episodes: 1,
+        rating: 9.0,
+        genres: [
+            "Романтика",
+            "Фэнтези",
+            "Драма"
+        ],
+        poster:
+        "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600",
+        description:
+        "История двух подростков, которые загадочным образом начинают меняться телами."
+    },
+
+
+    {
+        id: 4,
+        title: "Клинок, рассекающий демонов",
+        year: 2019,
+        type: "TV",
+        episodes: 26,
+        rating: 8.7,
+        genres: [
+            "Экшен",
+            "Фэнтези"
+        ],
+        poster:
+        "https://images.unsplash.com/photo-1578632292335-df3abbb0d586?w=600",
+        description:
+        "Тандзиро становится охотником на демонов, чтобы вернуть своей сестре человеческий облик."
+    },
+
+
+    {
+        id: 5,
+        title: "Моя геройская академия",
+        year: 2016,
+        type: "TV",
+        episodes: 13,
+        rating: 8.0,
+        genres: [
+            "Экшен",
+            "Комедия"
+        ],
+        poster:
+        "https://images.unsplash.com/photo-1563089145-599997674d42?w=600",
+        description:
+        "В мире, где сверхспособности стали нормой, юноша мечтает стать настоящим героем."
+    },
+
+
+    {
+        id: 6,
+        title: "Ванпанчмен",
+        year: 2015,
+        type: "TV",
+        episodes: 12,
+        rating: 8.6,
+        genres: [
+            "Экшен",
+            "Комедия"
+        ],
+        poster:
+        "https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=600",
+        description:
+        "Сайтама настолько силён, что способен победить любого противника одним ударом."
+    },
+
+
+    {
+        id: 7,
+        title: "Хоримия",
+        year: 2021,
+        type: "TV",
+        episodes: 13,
+        rating: 8.2,
+        genres: [
+            "Романтика",
+            "Комедия",
+            "Драма"
+        ],
+        poster:
+        "https://images.unsplash.com/photo-1518709779341-56cf4535e94b?w=600",
+        description:
+        "Двое школьников обнаруживают, что их настоящие личности сильно отличаются от того, что видят окружающие."
+    },
+
+
+    {
+        id: 8,
+        title: "Мифический дух: Духовные хроники",
+        year: 2021,
+        type: "TV",
+        episodes: 12,
+        rating: 7.8,
+        genres: [
+            "Фэнтези",
+            "Экшен",
+            "Романтика"
+        ],
+        poster:
+        "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600",
+        description:
+        "Парень оказывается в мире магии, духов и невероятных приключений."
+    },
+
+
+    {
+        id: 9,
+        title: "Баскетбол Куроко",
+        year: 2012,
+        type: "TV",
+        episodes: 25,
+        rating: 8.4,
+        genres: [
+            "Спорт",
+            "Комедия",
+            "Драма"
+        ],
+        poster:
+        "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600",
+        description:
+        "История команды школьников, мечтающих стать лучшими баскетболистами."
+    },
+
+
+    {
+        id: 10,
+        title: "Магическая битва",
+        year: 2020,
+        type: "TV",
+        episodes: 24,
+        rating: 8.8,
+        genres: [
+            "Экшен",
+            "Фэнтези",
+            "Ужасы"
+        ],
+        poster:
+        "https://images.unsplash.com/photo-1578632292335-df3abbb0d586?w=600",
+        description:
+        "Юдзи Итадори оказывается втянут в мир проклятий и магов."
+    },
+
+
+    {
+        id: 11,
+        title: "Без игры — жизни нет",
+        year: 2014,
+        type: "TV",
+        episodes: 12,
+        rating: 8.1,
+        genres: [
+            "Игры",
+            "Фэнтези",
+            "Комедия"
+        ],
+        poster:
+        "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600",
+        description:
+        "Брат и сестра попадают в мир, где все конфликты решаются при помощи игр."
+    },
+
+
+    {
+        id: 12,
+        title: "Тёмный дворецкий",
+        year: 2008,
+        type: "TV",
+        episodes: 24,
+        rating: 8.3,
+        genres: [
+            "Детектив",
+            "Драма",
+            "Фэнтези"
+        ],
+        poster:
+        "https://images.unsplash.com/photo-1518709779341-56cf4535e94b?w=600",
+        description:
+        "Молодой аристократ заключает загадочный контракт с демоном."
+    }
+
+];
+
+
+/* =====================================================
+   СОСТОЯНИЕ ПРИЛОЖЕНИЯ
+===================================================== */
+
+let userData =
+    JSON.parse(
+        localStorage.getItem(
+            "mirageAnimeData"
+        )
+    ) || {};
+
+
+let commentsData =
+    JSON.parse(
+        localStorage.getItem(
+            "mirageAnimeComments"
+        )
+    ) || {};
+
+
+let selectedFilters = {
+
+    type: "",
+
+    genre: "",
+
+    year: ""
+
+};
+
+
+let currentAnime = null;
+
+let currentStatus = "all";
+
+
+/* =====================================================
+   СОХРАНЕНИЕ
+===================================================== */
+
+function saveUserData() {
+
+    localStorage.setItem(
+        "mirageAnimeData",
+        JSON.stringify(userData)
+    );
+
+}
+
+
+function saveComments() {
+
+    localStorage.setItem(
+        "mirageAnimeComments",
+        JSON.stringify(commentsData)
+    );
+
+}
+
+
+/* =====================================================
+   ДАТА РЕГИСТРАЦИИ
+===================================================== */
+
+function getRegistrationDate() {
+
+    let date =
+        localStorage.getItem(
+            "mirageRegistrationDate"
+        );
+
+
+    if (!date) {
+
+        const now =
+            new Date();
+
+
+        date =
+            now.toLocaleDateString(
+                "ru-RU"
+            );
+
+
+        localStorage.setItem(
+            "mirageRegistrationDate",
+            date
+        );
+
+    }
+
+
+    return date;
+
+}
+
+
+/* =====================================================
+   КАРТОЧКА АНИМЕ
+===================================================== */
+
+function createCard(anime) {
+
+    const card =
+        document.createElement(
+            "div"
+        );
+
+
+    card.className =
+        "card";
+
+
+    const status =
+        userData[
+            anime.id
+        ] || "";
+
+
+    card.onclick =
+        function() {
+
+            openAnime(
+                anime.id
+            );
+
+        };
+
+
+    card.innerHTML = `
+
+        <div class="poster-wrapper">
+
+            <img
+                class="poster"
+                src="${anime.poster}"
+                alt="${anime.title}"
+            >
+
+
+            <div class="card-rating">
+                ${anime.rating}
+            </div>
+
+
+            <button
+                class="favorite ${
+                    status
+                    ? "active"
+                    : ""
+                }"
+                onclick="
+                    toggleFavorite(
+                        event,
+                        ${anime.id}
+                    )
+                "
+            >
+                ${
+                    status
+                    ? "★"
+                    : "☆"
+                }
+            </button>
+
+        </div>
+
+
+        <div class="card-info">
+
+            <div class="card-title">
+                ${anime.title}
+            </div>
+
+        </div>
+
+    `;
+
+
+    return card;
+
+}
+
+
+/* =====================================================
+   ОТРИСОВКА ГЛАВНОЙ
+===================================================== */
+
+function renderHome(
+    list = animeList
+) {
+
+    const grid =
+        document.getElementById(
+            "homeGrid"
+        );
+
+
+    grid.innerHTML = "";
+
+
+    if (
+        list.length === 0
+    ) {
+
+        grid.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    🔍
+                </div>
+
+                Аниме не найдено
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    list.forEach(
+        anime => {
+
+            grid.appendChild(
+                createCard(anime)
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   ПОИСК ПО НАЗВАНИЮ
+===================================================== */
+
+function searchAnime(
+    value
+) {
+
+    const text =
+        value
+            .toLowerCase()
+            .trim();
+
+
+    if (!text) {
+
+        renderHome();
+
+        return;
+
+    }
+
+
+    const results =
+        animeList.filter(
+            anime => {
+
+                return anime.title
+                    .toLowerCase()
+                    .includes(text);
+
+            }
+        );
+
+
+    renderHome(
+        results
+    );
+
+}
+
+
+/* =====================================================
+   ОТКРЫТЬ / ЗАКРЫТЬ ФИЛЬТР
+===================================================== */
+
+function toggleFilterPanel() {
+
+    const panel =
+        document.getElementById(
+            "filterPanel"
+        );
+
+
+    const button =
+        document.getElementById(
+            "filterSearchButton"
+        );
+
+
+    panel.classList.toggle(
+        "show"
+    );
+
+
+    button.classList.toggle(
+        "active"
+    );
+
+}
+
+
+/* =====================================================
+   ВЫБОР ФИЛЬТРА
+===================================================== */
+
+function selectFilter(
+    type,
+    value,
+    button
+) {
+
+    selectedFilters[
+        type
+    ] = value;
+
+
+    document
+        .querySelectorAll(
+            `[data-filter-type="${type}"]`
+        )
+        .forEach(
+            item => {
+
+                item.classList.remove(
+                    "selected"
+                );
+
+            }
+        );
+
+
+    button.classList.add(
+        "selected"
+    );
+
+}
+
+
+/* =====================================================
+   ГОДОВОЙ ДИАПАЗОН
+===================================================== */
+
+function checkYear(
+    year,
+    range
+) {
+
+    if (
+        range === "2026"
+    ) {
+
+        return year === 2026;
+
+    }
+
+
+    const parts =
+        range.split("-");
+
+
+    const start =
+        Number(parts[0]);
+
+
+    const end =
+        Number(parts[1]);
+
+
+    return (
+        year >= start &&
+        year <= end
+    );
+
+}
+
+
+/* =====================================================
+   ПРИМЕНИТЬ ФИЛЬТРЫ
+===================================================== */
+
+function applyFilters() {
+
+    const searchInput =
+        document.getElementById(
+            "homeSearch"
+        );
+
+
+    const searchText =
+        searchInput.value
+            .toLowerCase()
+            .trim();
+
+
+    let results =
+        animeList.filter(
+            anime => {
+
+                const matchesText =
+                    !searchText ||
+                    anime.title
+                        .toLowerCase()
+                        .includes(
+                            searchText
+                        );
+
+
+                const matchesType =
+                    !selectedFilters.type ||
+                    anime.type ===
+                    selectedFilters.type;
+
+
+                const matchesGenre =
+                    !selectedFilters.genre ||
+                    anime.genres.includes(
+                        selectedFilters.genre
+                    );
+
+
+                const matchesYear =
+                    !selectedFilters.year ||
+                    checkYear(
+                        anime.year,
+                        selectedFilters.year
+                    );
+
+
+                return (
+                    matchesText &&
+                    matchesType &&
+                    matchesGenre &&
+                    matchesYear
+                );
+
+            }
+        );
+
+
+    renderHome(
+        results
+    );
+
+
+    document
+        .getElementById(
+            "filterPanel"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+    document
+        .getElementById(
+            "filterSearchButton"
+        )
+        .classList.remove(
+            "active"
+        );
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =====================================================
+   СБРОСИТЬ ФИЛЬТР
+===================================================== */
+
+function resetFilters() {
+
+    selectedFilters = {
+
+        type: "",
+
+        genre: "",
+
+        year: ""
+
+    };
+
+
+    document
+        .querySelectorAll(
+            ".filter-option"
+        )
+        .forEach(
+            button => {
+
+                button.classList.remove(
+                    "selected"
+                );
+
+            }
+        );
+
+
+    document.getElementById(
+        "homeSearch"
+    ).value = "";
+
+
+    renderHome();
+
+
+    document
+        .getElementById(
+            "filterPanel"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+    document
+        .getElementById(
+            "filterSearchButton"
+        )
+        .classList.remove(
+            "active"
+        );
+
+}
+
+
+/* =====================================================
+   ИЗБРАННОЕ
+===================================================== */
+
+function toggleFavorite(
+    event,
+    id
+) {
+
+    event.stopPropagation();
+
+
+    if (
+        userData[id]
+    ) {
+
+        delete userData[id];
+
+    } else {
+
+        userData[id] =
+            "Планирую";
+
+    }
+
+
+    saveUserData();
+
+
+    renderHome();
+
+    renderFavorites();
+
+    updateStats();
+
+}
+
+
+/* =====================================================
+   ОТРИСОВКА ИЗБРАННОГО
+===================================================== */
+
+function renderFavorites() {
+
+    const grid =
+        document.getElementById(
+            "favoritesGrid"
+        );
+
+
+    grid.innerHTML = "";
+
+
+    let list =
+        animeList.filter(
+            anime =>
+                userData[
+                    anime.id
+                ]
+        );
+
+
+    if (
+        currentStatus !==
+        "all"
+    ) {
+
+        list =
+            list.filter(
+                anime =>
+                    userData[
+                        anime.id
+                    ] ===
+                    currentStatus
+            );
+
+    }
+
+
+    if (
+        list.length === 0
+    ) {
+
+        grid.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    ☆
+                </div>
+
+                В этом разделе
+                пока ничего нет
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    list.forEach(
+        anime => {
+
+            grid.appendChild(
+                createCard(anime)
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   ФИЛЬТР СТАТУСОВ
+===================================================== */
+
+function filterStatus(
+    status,
+    button
+) {
+
+    currentStatus =
+        status;
+
+
+    document
+        .querySelectorAll(
+            ".status-btn"
+        )
+        .forEach(
+            item => {
+
+                item.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    renderFavorites();
+
+}
+
+
+/* =====================================================
+   ПЕРЕХОД МЕЖДУ РАЗДЕЛАМИ
+===================================================== */
+
+function showSection(
+    sectionId,
+    button
+) {
+
+    document
+        .querySelectorAll(
+            ".section"
+        )
+        .forEach(
+            section => {
+
+                section.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+    const section =
+        document.getElementById(
+            sectionId
+        );
+
+
+    if (section) {
+
+        section.classList.add(
+            "active"
+        );
+
+    }
+
+
+    document
+        .querySelectorAll(
+            "nav button, .mobile-nav button"
+        )
+        .forEach(
+            item => {
+
+                item.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+    if (button) {
+
+        button.classList.add(
+            "active"
+        );
+
+    }
+
+
+    if (
+        sectionId ===
+        "favorites"
+    ) {
+
+        renderFavorites();
+
+    }
+
+
+    if (
+        sectionId ===
+        "profile"
+    ) {
+
+        loadProfile();
+
+    }
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =====================================================
+   ОТКРЫТЬ АНИМЕ
+===================================================== */
+
+function openAnime(
+    id
+) {
+
+    const anime =
+        animeList.find(
+            item =>
+                item.id === id
+        );
+
+
+    if (!anime)
+        return;
+
+
+    currentAnime =
+        anime;
+
+
+    document.getElementById(
+        "animeModalTitle"
+    ).textContent =
+        anime.title;
+
+
+    document.getElementById(
+        "animeModalPoster"
+    ).src =
+        anime.poster;
+
+
+    document.getElementById(
+        "animeModalMeta"
+    ).innerHTML = `
+
+        <strong>Рейтинг:</strong>
+        ⭐ ${anime.rating}
+
+        <br>
+
+        <strong>Год:</strong>
+        ${anime.year}
+
+        <br>
+
+        <strong>Тип:</strong>
+        ${anime.type}
+
+        <br>
+
+        <strong>Серии:</strong>
+        ${anime.episodes}
+
+        <br>
+
+        <strong>Жанры:</strong>
+        ${anime.genres.join(", ")}
+
+    `;
+
+
+    document.getElementById(
+        "animeModalDescription"
+    ).textContent =
+        anime.description;
+
+
+    document.getElementById(
+        "animeStatus"
+    ).value =
+        userData[
+            anime.id
+        ] || "";
+
+
+    renderComments();
+
+
+    document
+        .getElementById(
+            "animeModal"
+        )
+        .classList.add(
+            "show"
+        );
+
+}
+
+
+/* =====================================================
+   СТАТУС АНИМЕ
+===================================================== */
+
+function changeAnimeStatus() {
+
+    if (!currentAnime)
+        return;
+
+
+    const value =
+        document.getElementById(
+            "animeStatus"
+        ).value;
+
+
+    if (value) {
+
+        userData[
+            currentAnime.id
+        ] = value;
+
+    } else {
+
+        delete userData[
+            currentAnime.id
+        ];
+
+    }
+
+
+    saveUserData();
+
+
+    renderHome();
+
+    renderFavorites();
+
+    updateStats();
+
+}
+
+
+/* =====================================================
+   ЗАКРЫТЬ АНИМЕ
+===================================================== */
+
+function closeAnimeModal() {
+
+    document
+        .getElementById(
+            "animeModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+
+function closeAnimeOutside(
+    event
+) {
+
+    if (
+        event.target.id ===
+        "animeModal"
+    ) {
+
+        closeAnimeModal();
+
+    }
+
+}
+
+
+/* =====================================================
+   КОММЕНТАРИИ
+===================================================== */
+
+function renderComments() {
+
+    const list =
+        document.getElementById(
+            "commentsList"
+        );
+
+
+    list.innerHTML = "";
+
+
+    if (!currentAnime)
+        return;
+
+
+    const comments =
+        commentsData[
+            currentAnime.id
+        ] || [];
+
+
+    if (
+        comments.length === 0
+    ) {
+
+        list.innerHTML = `
+
+            <div
+                style="
+                    color:#686c76;
+                    font-size:13px;
+                    padding:10px 0;
+                "
+            >
+                Пока нет комментариев.
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    comments.forEach(
+        comment => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "comment";
+
+
+            item.innerHTML = `
+
+                <div class="comment-user">
+                    ${comment.user}
+                </div>
+
+                <div class="comment-text">
+                    ${comment.text}
+                </div>
+
+            `;
+
+
+            list.appendChild(
+                item
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   ДОБАВИТЬ КОММЕНТАРИЙ
+===================================================== */
+
+function addComment() {
+
+    if (!currentAnime)
+        return;
+
+
+    const input =
+        document.getElementById(
+            "commentInput"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if (!text)
+        return;
+
+
+    if (
+        !commentsData[
+            currentAnime.id
+        ]
+    ) {
+
+        commentsData[
+            currentAnime.id
+        ] = [];
+
+    }
+
+
+    commentsData[
+        currentAnime.id
+    ].push({
+
+        user: "Гость",
+
+        text: text
+
+    });
+
+
+    saveComments();
+
+
+    input.value = "";
+
+
+    renderComments();
+
+}
+    /* =====================================================
+   ПРОФИЛЬ
+===================================================== */
+
+function loadProfile() {
+
+    const registrationDate =
+        getRegistrationDate();
+
+
+    document.getElementById(
+        "registrationDate"
+    ).textContent =
+        registrationDate;
+
+
+    const username =
+        localStorage.getItem(
+            "mirageUsername"
+        );
+
+
+    document.getElementById(
+        "profileUsername"
+    ).textContent =
+        username || "Гость";
+
+
+    const avatar =
+        localStorage.getItem(
+            "mirageAvatar"
+        );
+
+
+    if (avatar) {
+
+        document.getElementById(
+            "profileAvatar"
+        ).src =
+            avatar;
+
+    }
+
+
+    renderFriends();
+
+}
+
+
+/* =====================================================
+   АВАТАР
+===================================================== */
+
+function changeAvatar(event) {
+
+    const file =
+        event.target.files[0];
+
+
+    if (!file)
+        return;
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload =
+        function(e) {
+
+            const image =
+                e.target.result;
+
+
+            document.getElementById(
+                "profileAvatar"
+            ).src =
+                image;
+
+
+            localStorage.setItem(
+                "mirageAvatar",
+                image
+            );
+
+        };
+
+
+    reader.readAsDataURL(
+        file
+    );
+
+}
+
+
+/* =====================================================
+   ПРОФИЛЬНЫЕ РАЗДЕЛЫ
+===================================================== */
+
+function openProfileSection(
+    section
+) {
+
+    const sections = {
+
+        news:
+            "profileNews",
+
+        messages:
+            "profileMessages",
+
+        friends:
+            "profileFriends"
+
+    };
+
+
+    Object.values(
+        sections
+    ).forEach(
+        id => {
+
+            const element =
+                document.getElementById(
+                    id
+                );
+
+
+            if (element) {
+
+                element.style.display =
+                    "none";
+
+            }
+
+        }
+    );
+
+
+    const selected =
+        document.getElementById(
+            sections[section]
+        );
+
+
+    if (selected) {
+
+        selected.style.display =
+            "block";
+
+
+        selected.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }
+
+}
+
+
+/* =====================================================
+   ДРУЗЬЯ
+===================================================== */
+
+let friendsData =
+    JSON.parse(
+        localStorage.getItem(
+            "mirageFriends"
+        )
+    ) || [];
+
+
+function saveFriends() {
+
+    localStorage.setItem(
+        "mirageFriends",
+        JSON.stringify(
+            friendsData
+        )
+    );
+
+}
+
+
+/* =====================================================
+   ОТРИСОВКА ДРУЗЕЙ
+===================================================== */
+
+function renderFriends() {
+
+    const list =
+        document.getElementById(
+            "friendsList"
+        );
+
+
+    if (!list)
+        return;
+
+
+    list.innerHTML = "";
+
+
+    if (
+        friendsData.length === 0
+    ) {
+
+        list.innerHTML = `
+
+            <div
+                style="
+                    color:#6f737e;
+                    text-align:center;
+                    padding:20px 5px;
+                    font-size:13px;
+                "
+            >
+                У вас пока нет друзей.
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    friendsData.forEach(
+        (friend, index) => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "friend-item";
+
+
+            item.onclick =
+                function() {
+
+                    openFriendProfile(
+                        index
+                    );
+
+                };
+
+
+            item.innerHTML = `
+
+                <img
+                    class="friend-avatar"
+                    src="${
+                        friend.avatar ||
+                        "https://i.imgur.com/6VBx3io.png"
+                    }"
+                    alt=""
+                >
+
+                <div>
+
+                    <div class="friend-name">
+                        ${friend.name}
+                    </div>
+
+                    <div class="friend-status">
+                        Друг
+                    </div>
+
+                </div>
+
+            `;
+
+
+            list.appendChild(
+                item
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   ДОБАВЛЕНИЕ ДРУГА
+===================================================== */
+
+function openFriendAdd() {
+
+    document
+        .getElementById(
+            "friendModal"
+        )
+        .classList.add(
+            "show"
+        );
+
+
+    document.getElementById(
+        "friendNameInput"
+    ).value = "";
+
+}
+
+
+function closeFriendModal() {
+
+    document
+        .getElementById(
+            "friendModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+
+function addFriend() {
+
+    const input =
+        document.getElementById(
+            "friendNameInput"
+        );
+
+
+    const name =
+        input.value.trim();
+
+
+    if (!name) {
+
+        alert(
+            "Введите имя пользователя"
+        );
+
+        return;
+
+    }
+
+
+    friendsData.push({
+
+        name: name,
+
+        avatar:
+            "https://i.imgur.com/6VBx3io.png"
+
+    });
+
+
+    saveFriends();
+
+
+    renderFriends();
+
+
+    closeFriendModal();
+
+
+    openProfileSection(
+        "friends"
+    );
+
+}
+
+
+/* =====================================================
+   ПРОСМОТР ПРОФИЛЯ ДРУГА
+===================================================== */
+
+function openFriendProfile(
+    index
+) {
+
+    const friend =
+        friendsData[index];
+
+
+    if (!friend)
+        return;
+
+
+    document.getElementById(
+        "friendProfileAvatar"
+    ).src =
+        friend.avatar;
+
+
+    document.getElementById(
+        "friendProfileName"
+    ).textContent =
+        friend.name;
+
+
+    document
+        .getElementById(
+            "friendProfileModal"
+        )
+        .classList.add(
+            "show"
+        );
+
+}
+
+
+function closeFriendProfile() {
+
+    document
+        .getElementById(
+            "friendProfileModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+
+/* =====================================================
+   АВТОРИЗАЦИЯ
+===================================================== */
+
+let authMode =
+    "login";
+
+
+function openAuth(
+    mode
+) {
+
+    authMode =
+        mode;
+
+
+    const title =
+        document.getElementById(
+            "authModalTitle"
+        );
+
+
+    const button =
+        document.getElementById(
+            "authSubmit"
+        );
+
+
+    if (
+        mode ===
+        "register"
+    ) {
+
+        title.textContent =
+            "Регистрация";
+
+        button.textContent =
+            "Создать аккаунт";
+
+    } else {
+
+        title.textContent =
+            "Войти";
+
+        button.textContent =
+            "Войти";
+
+    }
+
+
+    document
+        .getElementById(
+            "authModal"
+        )
+        .classList.add(
+            "show"
+        );
+
+}
+
+
+function closeAuth() {
+
+    document
+        .getElementById(
+            "authModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+
+/* =====================================================
+   ВХОД / РЕГИСТРАЦИЯ
+===================================================== */
+
+function submitAuth() {
+
+    const username =
+        document.getElementById(
+            "authUsername"
+        ).value.trim();
+
+
+    if (!username) {
+
+        alert(
+            "Введите имя пользователя"
+        );
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "mirageUsername",
+        username
+    );
+
+
+    if (
+        authMode ===
+        "register"
+    ) {
+
+        localStorage.setItem(
+            "mirageRegistrationDate",
+            new Date()
+                .toLocaleDateString(
+                    "ru-RU"
+                )
+        );
+
+    }
+
+
+    loadProfile();
+
+
+    closeAuth();
+
+
+    alert(
+        authMode === "register"
+        ? "Аккаунт создан!"
+        : "Вы вошли в аккаунт!"
+    );
+
+}
+
+
+/* =====================================================
+   СТАТИСТИКА
+===================================================== */
+
+function updateStats() {
+
+    const all =
+        Object.keys(
+            userData
+        ).length;
+
+
+    const watched =
+        Object.values(
+            userData
+        ).filter(
+            value =>
+                value ===
+                "Просмотрено"
+        ).length;
+
+
+    const watching =
+        Object.values(
+            userData
+        ).filter(
+            value =>
+                value ===
+                "Смотрю"
+        ).length;
+
+
+    const dropped =
+        Object.values(
+            userData
+        ).filter(
+            value =>
+                value ===
+                "Брошено"
+        ).length;
+
+
+    const planned =
+        Object.values(
+            userData
+        ).filter(
+            value =>
+                value ===
+                "Планирую"
+        ).length;
+
+
+    const elements = {
+
+        statAll:
+            all,
+
+        statWatched:
+            watched,
+
+        statWatching:
+            watching,
+
+        statDropped:
+            dropped,
+
+        statPlanned:
+            planned
+
+    };
+
+
+    Object.keys(
+        elements
+    ).forEach(
+        id => {
+
+            const element =
+                document.getElementById(
+                    id
+                );
+
+
+            if (element) {
+
+                element.textContent =
+                    elements[id];
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   ЗАКРЫТИЕ МОДАЛЬНЫХ ОКОН ПО ФОНУ
+===================================================== */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            event.target.classList
+                .contains("modal")
+        ) {
+
+            event.target
+                .classList
+                .remove("show");
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   ESC — ЗАКРЫТЬ ОКНО
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key ===
+            "Escape"
+        ) {
+
+            document
+                .querySelectorAll(
+                    ".modal.show"
+                )
+                .forEach(
+                    modal => {
+
+                        modal.classList
+                            .remove("show");
+
+                    }
+                );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   МОБИЛЬНАЯ НАВИГАЦИЯ
+===================================================== */
+
+function mobileNavigation(
+    section,
+    button
+) {
+
+    showSection(
+        section,
+        button
+    );
+
+}
+
+
+/* =====================================================
+   ЗАПУСК САЙТА
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        renderHome();
+
+        renderFavorites();
+
+        loadProfile();
+
+        updateStats();
+
+    }
+);
+
+</script>
+
+
+<!-- =====================================================
+     ANIME MODAL
+===================================================== -->
+
+<div
+    id="animeModal"
+    class="modal"
+    onclick="closeAnimeOutside(event)"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2 id="animeModalTitle">
+                Аниме
+            </h2>
+
+            <button
+                class="close-button"
+                onclick="closeAnimeModal()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+
+        <div class="anime-details">
+
+
+            <img
+                id="animeModalPoster"
+                class="anime-details-poster"
+                src=""
+                alt=""
+            >
+
+
+            <div
+                class="anime-details-info"
+            >
+
+                <h3
+                    id="animeModalTitle2"
+                    style="display:none"
+                ></h3>
+
+
+                <div
+                    id="animeModalMeta"
+                    class="anime-meta"
+                ></div>
+
+
+                <div
+                    id="animeModalDescription"
+                    class="anime-description"
+                ></div>
+
+
+                <select
+                    id="animeStatus"
+                    class="status-select"
+                    onchange="changeAnimeStatus()"
+                >
+
+                    <option value="">
+                        + Добавить в избранное
+                    </option>
+
+                    <option value="Смотрю">
+                        👀 Смотрю
+                    </option>
+
+                    <option value="Просмотрено">
+                        ✅ Просмотрено
+                    </option>
+
+                    <option value="Брошено">
+                        ⏸️ Брошено
+                    </option>
+
+                    <option value="Планирую">
+                        📌 Планирую
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <!-- COMMENTS -->
+
+        <div class="comments-box">
+
+            <div class="comments-title">
+                💬 Комментарии
+            </div>
+
+
+            <div
+                class="comment-input-wrapper"
+            >
+
+                <input
+                    id="commentInput"
+                    class="comment-input"
+                    type="text"
+                    placeholder="Написать комментарий..."
+                >
+
+
+                <button
+                    class="comment-button"
+                    onclick="addComment()"
+                >
+                    Отправить
+                </button>
+
+            </div>
+
+
+            <div
+                id="commentsList"
+                class="comments-list"
+            ></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     AUTH MODAL
+===================================================== -->
+
+<div
+    id="authModal"
+    class="modal"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2 id="authModalTitle">
+                Войти
+            </h2>
+
+
+            <button
+                class="close-button"
+                onclick="closeAuth()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+
+        <div class="auth-content">
+
+            <div class="auth-logo">
+                Мираж Anime
+            </div>
+
+
+            <div class="auth-subtitle">
+                Введите данные для продолжения
+            </div>
+
+
+            <input
+                id="authUsername"
+                class="auth-input"
+                type="text"
+                placeholder="Имя пользователя"
+            >
+
+
+            <input
+                id="authEmail"
+                class="auth-input"
+                type="email"
+                placeholder="Email"
+            >
+
+
+            <input
+                id="authPassword"
+                class="auth-input"
+                type="password"
+                placeholder="Пароль"
+            >
+
+
+            <button
+                id="authSubmit"
+                class="auth-submit"
+                onclick="submitAuth()"
+            >
+                Войти
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     ADD FRIEND MODAL
+===================================================== -->
+
+<div
+    id="friendModal"
+    class="modal"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>
+                Добавить друга
+            </h2>
+
+
+            <button
+                class="close-button"
+                onclick="closeFriendModal()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+
+        <input
+            id="friendNameInput"
+            class="auth-input"
+            type="text"
+            placeholder="Имя пользователя"
+        >
+
+
+        <button
+            class="auth-submit"
+            onclick="addFriend()"
+        >
+            Добавить друга
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FRIEND PROFILE MODAL
+===================================================== -->
+
+<div
+    id="friendProfileModal"
+    class="modal"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>
+                Профиль
+            </h2>
+
+
+            <button
+                class="close-button"
+                onclick="closeFriendProfile()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+
+        <div class="friend-profile">
+
+
+            <img
+                id="friendProfileAvatar"
+                class="friend-profile-avatar"
+                src=""
+                alt=""
+            >
+
+
+            <div
+                id="friendProfileName"
+                class="friend-profile-name"
+            >
+                Пользователь
+            </div>
+
+
+            <div class="friend-profile-date">
+                Друг Мираж Anime
+            </div>
+
+
+            <button
+                class="friend-action"
+                onclick="closeFriendProfile()"
+            >
+                ✓ Друг
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MOBILE NAVIGATION
+===================================================== -->
+
+<div class="mobile-nav">
+
+
+    <button
+        class="active"
+        onclick="mobileNavigation('home', this)"
+    >
+
+        <span class="mobile-nav-icon">
+            🏠
+        </span>
+
+        Главная
+
+    </button>
+
+
+    <button
+        onclick="mobileNavigation('favorites', this)"
+    >
+
+        <span class="mobile-nav-icon">
+            ⭐
+        </span>
+
+        Избранное
+
+    </button>
+
+
+    <button
+        onclick="mobileNavigation('profile', this)"
+    >
+
+        <span class="mobile-nav-icon">
+            👤
+        </span>
+
+        Профиль
+
+    </button>
+
+
+</div>
 
 
 </main>
 
 
-<!-- ==================================================
-     НИЖНЯЯ НАВИГАЦИЯ
-================================================== -->
-
-<nav class="bottom-nav">
-
-    <div class="nav-container">
-
-
-        <button
-            class="nav-button active"
-            onclick="openPage('home', this)"
-        >
-
-            <span class="nav-icon">⌂</span>
-
-            <span>Главная</span>
-
-        </button>
-
-
-        <button
-            class="nav-button"
-            onclick="openPage('favorites', this)"
-        >
-
-            <span class="nav-icon">♡</span>
-
-            <span>Избранное</span>
-
-        </button>
-
-
-        <button
-            class="nav-button"
-            onclick="openPage('profile', this)"
-        >
-
-            <span class="nav-icon">♙</span>
-
-            <span>Профиль</span>
-
-        </button>
-
-
-    </div>
-
-</nav>
-
-
-<script>
-
-/* ==================================================
-   ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ
-================================================== */
-
-function openPage(pageId, button) {
-
-    /* Скрываем все страницы */
-
-    document.querySelectorAll('.page').forEach(page => {
-
-        page.classList.remove('active');
-
-    });
-
-
-    /* Показываем выбранную страницу */
-
-    document
-        .getElementById(pageId)
-        .classList.add('active');
-
-
-    /* Меняем активную кнопку */
-
-    document.querySelectorAll('.nav-button').forEach(btn => {
-
-        btn.classList.remove('active');
-
-    });
-
-    button.classList.add('active');
-
-
-    /*
-       Логотип и поиск показываем
-       ТОЛЬКО на Главной
-    */
-
-    const header = document.getElementById('home-header');
-
-    if (pageId === 'home') {
-
-        header.style.display = 'block';
-
-    } else {
-
-        header.style.display = 'none';
-
-    }
-
-
-    /* Возвращаем страницу наверх */
-
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-
-}
-
-
-/* ==================================================
-   ПОИСК
-================================================== */
-
-function searchAnime() {
-
-    alert("Поиск аниме будет добавлен позже.");
-
-}
-
-</script>
-
-
 </body>
-    </html>
+</html>
