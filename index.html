@@ -7,6 +7,7 @@
 <title>Мираж Anime</title>
 
 <style>
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -25,17 +26,19 @@ body {
 ========================= */
 
 header {
-    height: 100px;
+    height: 90px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     border-bottom: 1px solid rgba(255,255,255,0.08);
+
     background: rgba(8,9,13,0.95);
 }
 
 .logo {
-    position: relative;
-    font-size: 30px;
+    font-size: 27px;
     font-weight: 700;
     letter-spacing: 1px;
 
@@ -52,12 +55,14 @@ header {
 
     -webkit-background-clip: text;
     background-clip: text;
+
     color: transparent;
 
     animation: shine 4s linear infinite;
 }
 
 @keyframes shine {
+
     0% {
         background-position: 300% 0;
     }
@@ -65,6 +70,7 @@ header {
     100% {
         background-position: -300% 0;
     }
+
 }
 
 /* =========================
@@ -72,7 +78,7 @@ header {
 ========================= */
 
 main {
-    padding: 30px 18px 100px;
+    padding: 25px 16px 95px;
 }
 
 .page {
@@ -88,9 +94,9 @@ main {
 ========================= */
 
 .section-title {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
-    margin-bottom: 22px;
+    margin-bottom: 18px;
 }
 
 /* =========================
@@ -98,17 +104,25 @@ main {
 ========================= */
 
 .anime-grid {
+
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 13px;
+
+    max-width: 600px;
+
+    margin: 0 auto;
 }
 
 .anime-card {
+
     position: relative;
 
     aspect-ratio: 2 / 3;
 
-    border-radius: 12px;
+    border-radius: 11px;
 
     background:
         linear-gradient(
@@ -128,7 +142,9 @@ main {
 }
 
 .anime-card::after {
+
     content: "";
+
     position: absolute;
 
     inset: 0;
@@ -141,16 +157,18 @@ main {
     );
 
     opacity: 0;
+
     transition: opacity 0.3s ease;
 }
 
 .anime-card:hover {
-    transform: translateY(-4px);
+
+    transform: translateY(-3px);
 
     border-color: rgba(255,255,255,0.2);
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,0.45);
+        0 8px 25px rgba(0,0,0,0.45);
 }
 
 .anime-card:hover::after {
@@ -162,15 +180,17 @@ main {
 ========================= */
 
 .bottom-nav {
+
     position: fixed;
 
     left: 0;
     right: 0;
     bottom: 0;
 
-    height: 72px;
+    height: 68px;
 
     display: flex;
+
     justify-content: center;
     align-items: center;
 
@@ -184,26 +204,32 @@ main {
 }
 
 .nav-container {
+
     width: 100%;
-    max-width: 500px;
+    max-width: 460px;
 
     display: flex;
+
     justify-content: space-around;
 }
 
 .nav-button {
+
     border: none;
+
     background: transparent;
 
     color: #777;
 
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
 
-    gap: 5px;
+    gap: 4px;
 
-    font-size: 12px;
+    font-size: 11px;
 
     cursor: pointer;
 
@@ -211,7 +237,7 @@ main {
 }
 
 .nav-icon {
-    font-size: 23px;
+    font-size: 21px;
 }
 
 .nav-button.active {
@@ -223,15 +249,17 @@ main {
 ========================= */
 
 .empty-page {
-    min-height: calc(100vh - 200px);
+
+    min-height: calc(100vh - 190px);
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     color: #555;
 
-    font-size: 15px;
+    font-size: 14px;
 }
 
 /* =========================
@@ -241,47 +269,49 @@ main {
 @media (min-width: 700px) {
 
     main {
-        max-width: 1100px;
+        max-width: 900px;
         margin: auto;
     }
 
     .anime-grid {
-        grid-template-columns: repeat(4, 1fr);
+        max-width: 500px;
     }
 
-    .anime-card {
-        aspect-ratio: 2 / 3;
-    }
 }
 
 @media (max-width: 360px) {
-
-    .anime-grid {
-        gap: 10px;
-    }
 
     main {
         padding-left: 12px;
         padding-right: 12px;
     }
 
-    .logo {
-        font-size: 26px;
+    .anime-grid {
+        gap: 10px;
     }
+
+    .logo {
+        font-size: 25px;
+    }
+
 }
+
 </style>
 </head>
 
 <body>
+
 
 <!-- =========================
      ШАПКА
 ========================= -->
 
 <header>
+
     <div class="logo">
         Мираж Anime
     </div>
+
 </header>
 
 
@@ -290,6 +320,7 @@ main {
 ========================= -->
 
 <main>
+
 
     <!-- ГЛАВНАЯ -->
 
@@ -300,14 +331,6 @@ main {
         </div>
 
         <div class="anime-grid">
-
-            <div class="anime-card"></div>
-
-            <div class="anime-card"></div>
-
-            <div class="anime-card"></div>
-
-            <div class="anime-card"></div>
 
             <div class="anime-card"></div>
 
@@ -339,6 +362,7 @@ main {
 
     </section>
 
+
 </main>
 
 
@@ -350,12 +374,16 @@ main {
 
     <div class="nav-container">
 
+
         <button
             class="nav-button active"
             onclick="openPage('home', this)"
         >
+
             <span class="nav-icon">⌂</span>
+
             <span>Главная</span>
+
         </button>
 
 
@@ -363,8 +391,11 @@ main {
             class="nav-button"
             onclick="openPage('favorites', this)"
         >
+
             <span class="nav-icon">♡</span>
+
             <span>Избранное</span>
+
         </button>
 
 
@@ -372,9 +403,13 @@ main {
             class="nav-button"
             onclick="openPage('profile', this)"
         >
+
             <span class="nav-icon">♙</span>
+
             <span>Профиль</span>
+
         </button>
+
 
     </div>
 
@@ -389,30 +424,35 @@ main {
 
 function openPage(pageId, button) {
 
-    // Скрываем все страницы
     document.querySelectorAll('.page').forEach(page => {
+
         page.classList.remove('active');
+
     });
 
-    // Показываем выбранную
+
     document.getElementById(pageId).classList.add('active');
 
-    // Убираем active со всех кнопок
+
     document.querySelectorAll('.nav-button').forEach(btn => {
+
         btn.classList.remove('active');
+
     });
 
-    // Активируем нажатую кнопку
+
     button.classList.add('active');
 
-    // Возвращаем страницу вверх
+
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
     });
+
 }
 
 </script>
 
+
 </body>
-  </html>
+</html>
