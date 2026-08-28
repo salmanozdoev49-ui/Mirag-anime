@@ -2580,15 +2580,15 @@ function createCard(anime) {
 
 
     card.onclick =
-        function() {
+    function() {
 
-            openAnime(
-                anime.id
-            );
+        openAnimeDebug(
+            anime.id
+        );
 
-        };
+    };
 
-
+    
     card.innerHTML = `
 
         <div class="poster-wrapper">
@@ -4294,6 +4294,66 @@ document.addEventListener(
 
     }
 );
+
+/* =====================================================
+   ДИАГНОСТИКА КЛИКА ПО КАРТОЧКЕ
+===================================================== */
+
+function openAnimeDebug(id) {
+
+    console.log("🟢 КЛИК ПО КАРТОЧКЕ");
+    console.log("ID:", id);
+    console.log("Тип ID:", typeof id);
+    console.log("animeList:", animeList);
+
+    const anime =
+        animeList.find(
+            item =>
+                String(item.id) === String(id)
+        );
+
+    console.log("НАЙДЕНО АНИМЕ:", anime);
+
+    if (!anime) {
+
+        alert(
+            "❌ Аниме не найдено в animeList\n\n" +
+            "ID: " + id
+        );
+
+        return;
+    }
+
+    const modal =
+        document.getElementById(
+            "animeModal"
+        );
+
+    console.log(
+        "Модальное окно:",
+        modal
+    );
+
+    if (!modal) {
+
+        alert(
+            "❌ Не найдено окно #animeModal"
+        );
+
+        return;
+    }
+
+    console.log(
+        "Класс modal:",
+        modal.className
+    );
+
+    alert(
+        "✅ Клик работает!\n\n" +
+        "Аниме: " + anime.title + "\n" +
+        "ID: " + anime.id
+    );
+}    
 
 </script>
 
