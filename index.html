@@ -3252,10 +3252,10 @@ function openAnime(
 ) {
 
     const anime =
-        animeList.find(
-            item =>
-                item.id === id
-        );
+    animeList.find(
+        item =>
+            String(item.id) === String(id)
+    );
 
 
     if (!anime)
