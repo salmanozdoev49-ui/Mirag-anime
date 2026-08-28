@@ -2580,9 +2580,10 @@ function createCard(anime) {
 
 
     card.onclick = function() {
+    alert("КАРТОЧКА НАЖАТА");
     openAnime(anime.id);
 };
-
+   
     card.innerHTML = `
 
         <div class="poster-wrapper">
@@ -3248,12 +3249,9 @@ function openAnime(
 function openAnime(id) {
 
     alert(
-        "🔥 OPEN ANIME ЗАПУЩЕН!\n\n" +
-        "ID: " + id
+        "OPEN ANIME ЗАПУЩЕН!\n\nID: " + id
     );
-
-    }
-                                                   
+                                                  
 }
 
 
