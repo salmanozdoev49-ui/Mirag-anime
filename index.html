@@ -6,26 +6,6 @@
 
 <title>Мираж Anime</title>
 
-<!-- ================= SUPABASE ================= -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-
-const SUPABASE_URL =
-    "https://oitfdsoryrxlzgmqhqrq.supabase.co";
-
-const SUPABASE_KEY =
-    "sb_publishable_umItz7Y1LhxpgkYj4o7DsA_U9utqT8X";
-
-const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
-
-</script>
-
 <style>
 
 * {
@@ -858,8 +838,8 @@ main {
     font-size: 21px;
 
     margin-bottom: 6px;
-    }
-
+}
+        
 /* ================= PROFILE NEWS ================= */
 
 .profile-section-box {
@@ -2394,13 +2374,7 @@ main {
    ДАННЫЕ АНИМЕ
 ===================================================== */
 
-/*
-   Твои тестовые данные оставлены.
-   Они используются как резерв, если Supabase
-   временно недоступен.
-*/
-
-let animeList = [
+const animeList = [
 
     {
         id: 1,
@@ -2627,178 +2601,6 @@ let animeList = [
     }
 
 ];
-
-
-/* =====================================================
-   ЗАГРУЗКА АНИМЕ ИЗ SUPABASE
-===================================================== */
-
-async function loadAnimeFromSupabase() {
-
-    try {
-
-        const {
-            data,
-            error
-        } = await supabaseClient
-            .from("anime")
-            .select("*")
-            .order("id", {
-                ascending: true
-            });
-
-
-        if (error) {
-
-            console.error(
-                "Ошибка Supabase:",
-                error
-            );
-
-            console.log(
-                "Используются резервные данные."
-            );
-
-            renderHome();
-
-            renderFavorites();
-
-            return;
-
-        }
-
-
-        if (!data) {
-
-            renderHome();
-
-            renderFavorites();
-
-            return;
-
-        }
-
-
-        /*
-           Приводим данные Supabase
-           к формату твоих карточек.
-        */
-
-        animeList =
-            data.map(anime => {
-
-                let genres =
-                    anime.genres;
-
-
-                /*
-                   Если genres хранится
-                   как JSON-массив — оставляем.
-
-                   Если строкой —
-                   пытаемся превратить
-                   в массив.
-                */
-
-                if (
-                    typeof genres === "string"
-                ) {
-
-                    try {
-
-                        genres =
-                            JSON.parse(
-                                genres
-                            );
-
-                    } catch {
-
-                        genres =
-                            genres
-                                .split(",")
-                                .map(
-                                    item =>
-                                        item.trim()
-                                )
-                                .filter(
-                                    Boolean
-                                );
-
-                    }
-
-                }
-
-
-                if (
-                    !Array.isArray(genres)
-                ) {
-
-                    genres = [];
-
-                }
-
-
-                return {
-
-                    id:
-                        Number(anime.id),
-
-                    title:
-                        anime.title || "",
-
-                    year:
-                        Number(anime.year) || 0,
-
-                    type:
-                        anime.type || "",
-
-                    episodes:
-                        Number(anime.episodes) || 0,
-
-                    rating:
-                        Number(anime.rating) || 0,
-
-                    genres:
-                        genres,
-
-                    poster:
-                        anime.poster || "",
-
-                    description:
-                        anime.description || ""
-
-                };
-
-            });
-
-
-        console.log(
-            "Аниме загружены из Supabase:",
-            animeList
-        );
-
-
-        renderHome();
-
-        renderFavorites();
-
-        updateStats();
-
-
-    } catch (error) {
-
-        console.error(
-            "Ошибка подключения к Supabase:",
-            error
-        );
-
-        renderHome();
-
-        renderFavorites();
-
-    }
-
-}
 
 
 /* =====================================================
@@ -3374,7 +3176,6 @@ function toggleFavorite(
 
     updateStats();
 
-
 }
 
 
@@ -3596,21 +3397,12 @@ function openAnime(
     const anime =
         animeList.find(
             item =>
-                Number(item.id) ===
-                Number(id)
+                item.id === id
         );
 
 
-    if (!anime) {
-
-        console.error(
-            "Аниме с ID не найдено:",
-            id
-        );
-
+    if (!anime)
         return;
-
-    }
 
 
     currentAnime =
@@ -4635,12 +4427,7 @@ function mobileNavigation(
 
 document.addEventListener(
     "DOMContentLoaded",
-    async function() {
-
-        /*
-           Сначала показываем интерфейс
-           с резервными данными.
-        */
+    function() {
 
         renderHome();
 
@@ -4649,14 +4436,6 @@ document.addEventListener(
         loadProfile();
 
         updateStats();
-
-
-        /*
-           Затем получаем реальные карточки
-           из Supabase.
-        */
-
-        await loadAnimeFromSupabase();
 
     }
 );
