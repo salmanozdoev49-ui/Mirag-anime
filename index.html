@@ -2579,16 +2579,10 @@ function createCard(anime) {
         ] || "";
 
 
-    card.onclick =
-    function() {
+    card.onclick = function() {
+    openAnime(anime.id);
+};
 
-        openAnimeDebug(
-            anime.id
-        );
-
-    };
-
-    
     card.innerHTML = `
 
         <div class="poster-wrapper">
@@ -3251,37 +3245,90 @@ function openAnime(
     id
 ) {
 
+function openAnime(id) {
+
+    console.log("🟢 openAnime запущена");
+    console.log("ID:", id);
+
     const anime =
-    animeList.find(
-        item =>
-            String(item.id) === String(id)
-    );
+        animeList.find(
+            item =>
+                String(item.id) === String(id)
+        );
 
+    console.log("Аниме найдено:", anime);
 
-    if (!anime)
+    if (!anime) {
+
+        alert(
+            "❌ Аниме не найдено\nID: " + id
+        );
+
         return;
+    }
 
 
-    currentAnime =
-        anime;
+    currentAnime = anime;
 
 
-    document.getElementById(
-        "animeModalTitle"
-    ).textContent =
+    const title =
+        document.getElementById(
+            "animeModalTitle"
+        );
+
+    const poster =
+        document.getElementById(
+            "animeModalPoster"
+        );
+
+    const meta =
+        document.getElementById(
+            "animeModalMeta"
+        );
+
+    const description =
+        document.getElementById(
+            "animeModalDescription"
+        );
+
+    const status =
+        document.getElementById(
+            "animeStatus"
+        );
+
+    const modal =
+        document.getElementById(
+            "animeModal"
+        );
+
+
+    console.log("title:", title);
+    console.log("poster:", poster);
+    console.log("meta:", meta);
+    console.log("description:", description);
+    console.log("status:", status);
+    console.log("modal:", modal);
+
+
+    if (!modal) {
+
+        alert(
+            "❌ Не найден #animeModal"
+        );
+
+        return;
+    }
+
+
+    title.textContent =
         anime.title;
 
 
-    document.getElementById(
-        "animeModalPoster"
-    ).src =
+    poster.src =
         anime.poster;
 
 
-    document.getElementById(
-        "animeModalMeta"
-    ).innerHTML = `
-
+    meta.innerHTML = `
         <strong>Рейтинг:</strong>
         ⭐ ${anime.rating}
 
@@ -3303,36 +3350,36 @@ function openAnime(
         <br>
 
         <strong>Жанры:</strong>
-        ${anime.genres.join(", ")}
-
+        ${
+            Array.isArray(anime.genres)
+                ? anime.genres.join(", ")
+                : anime.genres || "—"
+        }
     `;
 
 
-    document.getElementById(
-        "animeModalDescription"
-    ).textContent =
-        anime.description;
+    description.textContent =
+        anime.description || "";
 
 
-    document.getElementById(
-        "animeStatus"
-    ).value =
-        userData[
-            anime.id
-        ] || "";
+    status.value =
+        userData[anime.id] || "";
 
 
     renderComments();
 
 
-    document
-        .getElementById(
-            "animeModal"
-        )
-        .classList.add(
-            "show"
-        );
+    modal.classList.add(
+        "show"
+    );
 
+
+    console.log(
+        "✅ Модальное окно открыто"
+    );
+
+        }    
+                       
 }
 
 
